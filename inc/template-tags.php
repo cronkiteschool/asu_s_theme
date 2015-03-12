@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package _s
+ * @package jrnopswp
  */
 
 if ( ! function_exists( 'the_posts_navigation' ) ) :
@@ -20,15 +20,15 @@ function the_posts_navigation() {
 	}
 	?>
 	<nav class="navigation posts-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php _e( 'Posts navigation', '_s' ); ?></h2>
+		<h2 class="screen-reader-text"><?php _e( 'Posts navigation', 'jrnopswp' ); ?></h2>
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( 'Older posts', '_s' ) ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( __( 'Older posts', 'jrnopswp' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts', '_s' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts', 'jrnopswp' ) ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
@@ -53,7 +53,7 @@ function the_post_navigation() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h2 class="screen-reader-text"><?php _e( 'Post navigation', '_s' ); ?></h2>
+		<h2 class="screen-reader-text"><?php _e( 'Post navigation', 'jrnopswp' ); ?></h2>
 		<div class="nav-links">
 			<?php
 				previous_post_link( '<div class="nav-previous">%link</div>', '%title' );
@@ -65,11 +65,11 @@ function the_post_navigation() {
 }
 endif;
 
-if ( ! function_exists( '_s_posted_on' ) ) :
+if ( ! function_exists( 'jrnopswp_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function _s_posted_on() {
+function jrnopswp_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -83,12 +83,12 @@ function _s_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', '_s' ),
+		_x( 'Posted on %s', 'post date', 'jrnopswp' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
 	$byline = sprintf(
-		_x( 'by %s', 'post author', '_s' ),
+		_x( 'by %s', 'post author', 'jrnopswp' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
@@ -97,33 +97,33 @@ function _s_posted_on() {
 }
 endif;
 
-if ( ! function_exists( '_s_entry_footer' ) ) :
+if ( ! function_exists( 'jrnopswp_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
-function _s_entry_footer() {
+function jrnopswp_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', '_s' ) );
-		if ( $categories_list && _s_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', '_s' ) . '</span>', $categories_list );
+		$categories_list = get_the_category_list( __( ', ', 'jrnopswp' ) );
+		if ( $categories_list && jrnopswp_categorized_blog() ) {
+			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'jrnopswp' ) . '</span>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', '_s' ) );
+		$tags_list = get_the_tag_list( '', __( ', ', 'jrnopswp' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', '_s' ) . '</span>', $tags_list );
+			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'jrnopswp' ) . '</span>', $tags_list );
 		}
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		echo '<span class="comments-link">';
-		comments_popup_link( __( 'Leave a comment', '_s' ), __( '1 Comment', '_s' ), __( '% Comments', '_s' ) );
+		comments_popup_link( __( 'Leave a comment', 'jrnopswp' ), __( '1 Comment', 'jrnopswp' ), __( '% Comments', 'jrnopswp' ) );
 		echo '</span>';
 	}
 
-	edit_post_link( __( 'Edit', '_s' ), '<span class="edit-link">', '</span>' );
+	edit_post_link( __( 'Edit', 'jrnopswp' ), '<span class="edit-link">', '</span>' );
 }
 endif;
 
@@ -140,45 +140,45 @@ if ( ! function_exists( 'the_archive_title' ) ) :
  */
 function the_archive_title( $before = '', $after = '' ) {
 	if ( is_category() ) {
-		$title = sprintf( __( 'Category: %s', '_s' ), single_cat_title( '', false ) );
+		$title = sprintf( __( 'Category: %s', 'jrnopswp' ), single_cat_title( '', false ) );
 	} elseif ( is_tag() ) {
-		$title = sprintf( __( 'Tag: %s', '_s' ), single_tag_title( '', false ) );
+		$title = sprintf( __( 'Tag: %s', 'jrnopswp' ), single_tag_title( '', false ) );
 	} elseif ( is_author() ) {
-		$title = sprintf( __( 'Author: %s', '_s' ), '<span class="vcard">' . get_the_author() . '</span>' );
+		$title = sprintf( __( 'Author: %s', 'jrnopswp' ), '<span class="vcard">' . get_the_author() . '</span>' );
 	} elseif ( is_year() ) {
-		$title = sprintf( __( 'Year: %s', '_s' ), get_the_date( _x( 'Y', 'yearly archives date format', '_s' ) ) );
+		$title = sprintf( __( 'Year: %s', 'jrnopswp' ), get_the_date( _x( 'Y', 'yearly archives date format', 'jrnopswp' ) ) );
 	} elseif ( is_month() ) {
-		$title = sprintf( __( 'Month: %s', '_s' ), get_the_date( _x( 'F Y', 'monthly archives date format', '_s' ) ) );
+		$title = sprintf( __( 'Month: %s', 'jrnopswp' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'jrnopswp' ) ) );
 	} elseif ( is_day() ) {
-		$title = sprintf( __( 'Day: %s', '_s' ), get_the_date( _x( 'F j, Y', 'daily archives date format', '_s' ) ) );
+		$title = sprintf( __( 'Day: %s', 'jrnopswp' ), get_the_date( _x( 'F j, Y', 'daily archives date format', 'jrnopswp' ) ) );
 	} elseif ( is_tax( 'post_format' ) ) {
 		if ( is_tax( 'post_format', 'post-format-aside' ) ) {
-			$title = _x( 'Asides', 'post format archive title', '_s' );
+			$title = _x( 'Asides', 'post format archive title', 'jrnopswp' );
 		} elseif ( is_tax( 'post_format', 'post-format-gallery' ) ) {
-			$title = _x( 'Galleries', 'post format archive title', '_s' );
+			$title = _x( 'Galleries', 'post format archive title', 'jrnopswp' );
 		} elseif ( is_tax( 'post_format', 'post-format-image' ) ) {
-			$title = _x( 'Images', 'post format archive title', '_s' );
+			$title = _x( 'Images', 'post format archive title', 'jrnopswp' );
 		} elseif ( is_tax( 'post_format', 'post-format-video' ) ) {
-			$title = _x( 'Videos', 'post format archive title', '_s' );
+			$title = _x( 'Videos', 'post format archive title', 'jrnopswp' );
 		} elseif ( is_tax( 'post_format', 'post-format-quote' ) ) {
-			$title = _x( 'Quotes', 'post format archive title', '_s' );
+			$title = _x( 'Quotes', 'post format archive title', 'jrnopswp' );
 		} elseif ( is_tax( 'post_format', 'post-format-link' ) ) {
-			$title = _x( 'Links', 'post format archive title', '_s' );
+			$title = _x( 'Links', 'post format archive title', 'jrnopswp' );
 		} elseif ( is_tax( 'post_format', 'post-format-status' ) ) {
-			$title = _x( 'Statuses', 'post format archive title', '_s' );
+			$title = _x( 'Statuses', 'post format archive title', 'jrnopswp' );
 		} elseif ( is_tax( 'post_format', 'post-format-audio' ) ) {
-			$title = _x( 'Audio', 'post format archive title', '_s' );
+			$title = _x( 'Audio', 'post format archive title', 'jrnopswp' );
 		} elseif ( is_tax( 'post_format', 'post-format-chat' ) ) {
-			$title = _x( 'Chats', 'post format archive title', '_s' );
+			$title = _x( 'Chats', 'post format archive title', 'jrnopswp' );
 		}
 	} elseif ( is_post_type_archive() ) {
-		$title = sprintf( __( 'Archives: %s', '_s' ), post_type_archive_title( '', false ) );
+		$title = sprintf( __( 'Archives: %s', 'jrnopswp' ), post_type_archive_title( '', false ) );
 	} elseif ( is_tax() ) {
 		$tax = get_taxonomy( get_queried_object()->taxonomy );
 		/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
-		$title = sprintf( __( '%1$s: %2$s', '_s' ), $tax->labels->singular_name, single_term_title( '', false ) );
+		$title = sprintf( __( '%1$s: %2$s', 'jrnopswp' ), $tax->labels->singular_name, single_term_title( '', false ) );
 	} else {
-		$title = __( 'Archives', '_s' );
+		$title = __( 'Archives', 'jrnopswp' );
 	}
 
 	/**
@@ -226,8 +226,8 @@ endif;
  *
  * @return bool
  */
-function _s_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( '_s_categories' ) ) ) {
+function jrnopswp_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'jrnopswp_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -240,27 +240,27 @@ function _s_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( '_s_categories', $all_the_cool_cats );
+		set_transient( 'jrnopswp_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so _s_categorized_blog should return true.
+		// This blog has more than 1 category so jrnopswp_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so _s_categorized_blog should return false.
+		// This blog has only 1 category so jrnopswp_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in _s_categorized_blog.
+ * Flush out the transients used in jrnopswp_categorized_blog.
  */
-function _s_category_transient_flusher() {
+function jrnopswp_category_transient_flusher() {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return;
 	}
 	// Like, beat it. Dig?
-	delete_transient( '_s_categories' );
+	delete_transient( 'jrnopswp_categories' );
 }
-add_action( 'edit_category', '_s_category_transient_flusher' );
-add_action( 'save_post',     '_s_category_transient_flusher' );
+add_action( 'edit_category', 'jrnopswp_category_transient_flusher' );
+add_action( 'save_post',     'jrnopswp_category_transient_flusher' );
