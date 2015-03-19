@@ -19,7 +19,7 @@
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
+<?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/footer.shtml'); ?><!-- ASU Footer -->
 <?php wp_footer(); ?>
-
 </body>
 </html>
