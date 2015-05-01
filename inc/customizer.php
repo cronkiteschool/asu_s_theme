@@ -26,6 +26,19 @@ function jrnopswp_customize_preview_js() {
 add_action( 'customize_preview_init', 'jrnopswp_customize_preview_js' );
 
 /**
+ * Returns the options array for jrnopswp_s
+ */
+function jrnopswp_s_options($name, $default = false) {
+    $options = ( get_option( 'wordpress_jrnops_theme_options' ) ) ? get_option( 'wordpress_jrnops_theme_options' ) : null;
+    // return the option if it exists
+    if ( isset( $options[ $name ] ) ) {
+        return apply_filters( 'wordpress_jrnops_theme_options$name', $options[ $name ] );
+    }
+    // return default if nothing else
+    return apply_filters( 'wordpress_jrnops_theme_options_$name', $default );
+}
+
+/**
  * Sanitizer that does nothing
  */
 function wordpress_jrnops_sanitize_nothing( $data ) {
@@ -497,6 +510,164 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
         'settings'   => 'wordpress_jrnops_theme_options[rss]',
       )
   );
+  //  =============================
+  //  =============================
+  //  = Search Options            =
+  //  =============================
+  //  =============================
+  $wp_customize->add_section(
+      'wordpress_jrnops_theme_section_search',
+      array(
+        'title'      => __( 'Search','asu_wordpress' ),
+        'priority'   => 40,
+      )
+  );
+  //  =============================
+  //  = ASU Google Search App     =
+  //  =============================
+  $wp_customize->add_setting(
+      'wordpress_jrnops_theme_options[header_search]',
+      array(
+        'default'           => '1',
+        'capability'        => 'edit_theme_options',
+        'type'              => 'option',
+      )
+  );
+  $wp_customize->add_control(
+      'wordpress_jrnops_asu_gsa',
+      array(
+        'label'      => __( 'ASU Header Search Box', 'asu_wordpress' ),
+        'section'    => 'wordpress_jrnops_theme_section_search',
+        'settings'   => 'wordpress_jrnops_theme_options[header_search]',
+		'type'    => 'checkbox',
+      )
+  );
+  //  =============================
+  //  = Campus                    =
+  //  =============================
+  $wp_customize->add_setting(
+      'campus_name',
+      array(
+        'default'           => 'default',
+		'sanitize_callback' => 'asu_sanitize_campus_choices',
+		'transport'         => 'postMessage',
+        //'capability'        => 'edit_theme_options',
+        //'type'              => 'option',
+      )
+  );
+  $wp_customize->add_control(
+      'campus_name',
+      array(
+        //'settings'   => 'wordpress_jrnops_theme_options[selector_test]',
+        'label'      => __( 'Select Campus Name', 'asu_wordpress' ),
+        'section'    => 'wordpress_jrnops_theme_section',
+		'type'    => 'select',
+		'choices'    => asu_get_campus_choices(),
+		'priority' => 20,
+	)
+  );
 }
 add_action( 'customize_register', 'wordpress_jrnops_customize_register' );
+
+
+/**
+ * Register Campus Addresses for ASU Theme.
+ *
+ *
+ * Can be filtered with {@see 'asu_campus_addresses'}.
+ *
+ * @since jrnopswp 1.0
+ *
+ * @return array An associative array of ASU campus options.
+ */
+function asu_get_campus_addresses() {
+	return apply_filters( 'asu_campus_addresses', array(
+		'default' => array(
+			'label'  => __( '', 'asu_wordpress' ),
+			'address' => '',
+		),
+		'tempe' => array(
+			'label'  => __( 'Tempe', 'asu_wordpress' ),
+			'address' => 'Arizona State University - Tempe campus<br/>1151 S. Forest Ave.<br/>Tempe, AZ 85287 USA',
+		),
+		'polytechnic' => array(
+			'label'  => __( 'Polytechnic', 'asu_wordpress' ),
+			'address' => 'Arizona State University - Polytechnic campus<br/>Power Road and Williams Field Road<br/>7001 E. Williams Field Road<br/>Mesa, AZ 85212',
+		),
+		'downtown_phoenix' => array(
+			'label'  => __( 'Downtown Phoenix', 'asu_wordpress' ),
+			'address' => 'Arizona State University - Downtown Phoenix<br/>411 N. Central, Suite 520<br/>Phoenix, AZ 85004',
+		),
+		'west' => array(
+			'label'  => __( 'West', 'asu_wordpress' ),
+			'address' => 'Arizona State University - West campus<br/>4701 West Thunderbird Road<br/>PO Box 37100<br/>Phoenix, AZ 85069-7100',
+		),
+		'research_park' => array(
+			'label'  => __( 'Research Park', 'asu_wordpress' ),
+			'address' => 'Arizona State University - Research Park<br/>8750 S Science Dr<br/>Tempe, AZ 85284',
+		),
+		'skysong' => array(
+			'label'  => __( 'Skysong', 'asu_wordpress' ),
+			'address' => 'Arizona State University - SkySong<br/>1475 N. Scottsdale Rd, Suite 200<br/>Scottsdale, Arizona 85257-3538',
+		),
+		'lake_havasu' => array(
+			'label'  => __( 'Lake Havasu', 'asu_wordpress' ),
+			'address' => 'Arizona State University - Lake Havasu<br/>100 University Way<br/>Lake Havasu City, AZ 86403',
+		),
+	) );
+}
+
+if ( ! function_exists( 'asu_get_campus_address' ) ) :
+/**
+ * Get the current ASU Campus Address.
+ *
+ * @since jrnopswp 1.0
+ *
+ * @return a string address of either the current or default campus selected.
+ */
+function asu_get_campus_address() {
+	$asu_campus_option = get_theme_mod( 'campus_name', 'default' );
+	$campus_addresses       = asu_get_campus_addresses();
+	if ( array_key_exists( $asu_campus_option, $campus_addresses ) ) {
+		return $campus_addresses[ $asu_campus_option ]['address'];
+	}
+	return $campus_addresses['default']['address'];
+}
+endif; // asu_get_campus_address
+
+if ( ! function_exists( 'asu_get_campus_choices' ) ) :
+/**
+ * Returns an array of campus choices registered for ASU.
+ *
+ * @since jrnopswp 1.0
+ *
+ * @return array Array of ASU campuses.
+ */
+function asu_get_campus_choices() {
+	$asu_campuses               = asu_get_campus_addresses();
+	$asu_campus_control_options = array();
+	foreach ( $asu_campuses as $asu_campus => $value ) {
+		$asu_campus_control_options[ $asu_campus ] = $value['label'];
+	}
+	return $asu_campus_control_options;
+}
+endif; // asu_get_campus_choices
+
+if ( ! function_exists( 'asu_sanitize_campus_choices' ) ) :
+/**
+ * Sanitization callback for ASU Campuses.
+ *
+ * @since jrnopswp 1.0
+ *
+ * @param string $value ASU campus name value.
+ * @return string ASU campus name.
+ */
+function asu_sanitize_campus_choices( $value ) {
+	$asu_campuses = asu_get_campus_choices();
+	if ( ! array_key_exists( $value, $asu_campuses ) ) {
+		$value = 'default';
+	}
+	return $value;
+}
+endif; // asu_sanitize_campus_choices
 

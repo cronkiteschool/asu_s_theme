@@ -1003,6 +1003,13 @@ object {
 	}
 }
 
+@media handheld, only screen and (max-width: 799px) {
+    .widget_search {
+        display: none;
+        visibility: hidden;
+    }
+}
+
 .site-footer {
 	clear: both;
 	width: 100%;

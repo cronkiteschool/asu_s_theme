@@ -29,8 +29,18 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<div id="asu_header">
-			<?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/headers/default.shtml'); ?><!-- ASU Header -->
-
+			<?php $asu_header =  file_get_contents('http://www.asu.edu/asuthemes/4.3/headers/default.shtml'); ?>
+			<?php
+				$search_option = jrnopswp_s_options( 'header_search' );
+				if (!$search_option == 1):
+					$asu_header = preg_replace('#<div id="asu_search">.*?</div>#is', ' ', $asu_header);
+					$asu_header = preg_replace('#<div id="main-search" class="main-search [^"]*">.*?</div>#is', ' ', $asu_header);
+					$asu_header = preg_replace('#<div class="f-search" [^>]*>.*?</div>#is', ' ', $asu_header);
+				endif;
+			?>
+			<?php
+				echo $asu_header;
+			?><!-- ASU Header -->
 		</div><!-- .asu_header -->
 
 		<div class="site-branding">
