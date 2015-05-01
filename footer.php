@@ -237,7 +237,10 @@
 				?>
 			
 			  </div>
-
+		<nav id="footer-navigation" class="footer-navigation" role="navigation">
+			<button class="menu-toggle" aria-controls="secondary-menu" aria-expanded="false"><?php _e( 'Secondary Menu', 'jrnopswp' ); ?></button>
+			<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu' ) ); ?>
+		</nav><!-- #footer-navigation -->
 			</div><!-- /.big-foot -->
 
 			<div class="little-foot">
