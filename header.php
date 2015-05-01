@@ -6,6 +6,10 @@
  *
  * @package jrnopswp
  */
+
+$home_url  = esc_url( home_url( '/' ) );
+$ping_back = get_bloginfo( 'pingback_url' );
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
