@@ -86,26 +86,28 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
       )
   );
   //  =============================
-  //  = Campus Address            =
+  //  = Campus                    =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[campus_address]',
+      'wordpress_jrnops_theme_options[campus_name]',
       array(
-        'default'           => '',
+        'default'           => 'default',
+		'sanitize_callback' => 'asu_sanitize_campus_choices',
+		'transport'         => 'postMessage',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_campus_address',
+      'asu_campus_name',
       array(
-        'label'      => __( 'Campus Address (Tempe, Polytechnic, Downtown Phoenix, West, Research Park, Skysong, Lake Havasu)', 'asu_wordpress' ),
+        'settings'   => 'wordpress_jrnops_theme_options[campus_name]',
+        'label'      => __( 'Select Campus Name', 'asu_wordpress' ),
         'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[campus_address]',
-        'type'       => 'option',
-        'priority'   => 20,
-      )
+		'type'    => 'select',
+		'choices'    => asu_get_campus_choices(),
+		'priority' => 20,
+	)
   );
   //  =============================
   //  = School Address            =
@@ -480,30 +482,6 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
 		'type'    => 'checkbox',
       )
   );
-  //  =============================
-  //  = Campus                    =
-  //  =============================
-  $wp_customize->add_setting(
-      'campus_name',
-      array(
-        'default'           => 'default',
-		'sanitize_callback' => 'asu_sanitize_campus_choices',
-		'transport'         => 'postMessage',
-        //'capability'        => 'edit_theme_options',
-        //'type'              => 'option',
-      )
-  );
-  $wp_customize->add_control(
-      'campus_name',
-      array(
-        //'settings'   => 'wordpress_jrnops_theme_options[selector_test]',
-        'label'      => __( 'Select Campus Name', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-		'type'    => 'select',
-		'choices'    => asu_get_campus_choices(),
-		'priority' => 20,
-	)
-  );
 }
 add_action( 'customize_register', 'wordpress_jrnops_customize_register' );
 
@@ -626,7 +604,7 @@ if ( ! function_exists( 'asu_get_campus_address' ) ) :
  * @return a string address of either the current or default campus selected.
  */
 function asu_get_campus_address() {
-	$asu_campus_option = get_theme_mod( 'campus_name', 'default' );
+	$asu_campus_option = jrnopswp_s_options( 'campus_name', $default = 'default' );
 	$campus_addresses       = asu_get_campus_addresses();
 	if ( array_key_exists( $asu_campus_option, $campus_addresses ) ) {
 		return $campus_addresses[ $asu_campus_option ]['address'];
