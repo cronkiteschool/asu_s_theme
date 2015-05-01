@@ -6,68 +6,6 @@
  */
 
 /**
- * Add postMessage support for site title and description for the Theme Customizer.
- *
- * @param WP_Customize_Manager $wp_customize Theme Customizer object.
- */
-function jrnopswp_customize_register( $wp_customize ) {
-	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
-}
-add_action( 'customize_register', 'jrnopswp_customize_register' );
-
-/**
- * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
- */
-function jrnopswp_customize_preview_js() {
-	wp_enqueue_script( 'jrnopswp_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
-}
-add_action( 'customize_preview_init', 'jrnopswp_customize_preview_js' );
-
-/**
- * Returns the options array for jrnopswp_s
- */
-function jrnopswp_s_options($name, $default = false) {
-    $options = ( get_option( 'wordpress_jrnops_theme_options' ) ) ? get_option( 'wordpress_jrnops_theme_options' ) : null;
-    // return the option if it exists
-    if ( isset( $options[ $name ] ) ) {
-        return apply_filters( 'wordpress_jrnops_theme_options$name', $options[ $name ] );
-    }
-    // return default if nothing else
-    return apply_filters( 'wordpress_jrnops_theme_options_$name', $default );
-}
-
-/**
- * Sanitizer that does nothing
- */
-function wordpress_jrnops_sanitize_nothing( $data ) {
-  return $data;
-}
-/**
- * Sanitizer that checks if the data is an url
- */
-function wordpress_jrnops_sanitize_url( $data ) {
-  // TODO check that $data is an email or url
-  return $data;
-}
-/**
- * Sanitizer that checks if the data is an email or url
- */
-function wordpress_jrnops_sanitize_email_or_url( $data ) {
-  // TODO check that $data is an email or url
-  return $data;
-}
-/**
- * Sanitizer that checks if the data is a phone number
- */
-function wordpress_jrnops_sanitize_phone( $data ) {
-  // TODO check that $data is a phone number
-  return $data;
-}
-
-
-/**
  * Custom theme manager.  Special settings for the theme
  * get defined here.
  */
@@ -568,6 +506,68 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   );
 }
 add_action( 'customize_register', 'wordpress_jrnops_customize_register' );
+
+
+/**
+ * Add postMessage support for site title and description for the Theme Customizer.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function jrnopswp_customize_register( $wp_customize ) {
+	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
+	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+}
+add_action( 'customize_register', 'jrnopswp_customize_register' );
+
+/**
+ * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ */
+function jrnopswp_customize_preview_js() {
+	wp_enqueue_script( 'jrnopswp_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
+}
+add_action( 'customize_preview_init', 'jrnopswp_customize_preview_js' );
+
+/**
+ * Returns the options array for jrnopswp_s
+ */
+function jrnopswp_s_options($name, $default = false) {
+    $options = ( get_option( 'wordpress_jrnops_theme_options' ) ) ? get_option( 'wordpress_jrnops_theme_options' ) : null;
+    // return the option if it exists
+    if ( isset( $options[ $name ] ) ) {
+        return apply_filters( 'wordpress_jrnops_theme_options$name', $options[ $name ] );
+    }
+    // return default if nothing else
+    return apply_filters( 'wordpress_jrnops_theme_options_$name', $default );
+}
+
+/**
+ * Sanitizer that does nothing
+ */
+function wordpress_jrnops_sanitize_nothing( $data ) {
+  return $data;
+}
+/**
+ * Sanitizer that checks if the data is an url
+ */
+function wordpress_jrnops_sanitize_url( $data ) {
+  // TODO check that $data is an email or url
+  return $data;
+}
+/**
+ * Sanitizer that checks if the data is an email or url
+ */
+function wordpress_jrnops_sanitize_email_or_url( $data ) {
+  // TODO check that $data is an email or url
+  return $data;
+}
+/**
+ * Sanitizer that checks if the data is a phone number
+ */
+function wordpress_jrnops_sanitize_phone( $data ) {
+  // TODO check that $data is a phone number
+  return $data;
+}
 
 
 /**
