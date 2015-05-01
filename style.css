@@ -305,7 +305,13 @@ blockquote {
 }
 
 address {
-	margin: 0 0 1.5em;
+  font-weight: 200;
+  line-height: 1.44;
+  margin: 0 0 1.5em;
+}
+
+address strong {
+  font-weight: normal;
 }
 
 pre {
@@ -964,7 +970,7 @@ object {
 13.0 Layout
 --------------------------------------------------------------*/
 
-.site-content {
+.site-content, .site-footer .big-foot {
 	min-height: 1px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -1015,3 +1021,110 @@ object {
 	width: 100%;
 }
 
+.site-footer h1 {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.site-footer h2 {
+  color: #fff;
+  font-size: 21px;
+  font-weight: normal;
+  margin-bottom: 16px;
+}
+.site-footer a:not(.btn),
+.site-footer address,
+.site-footer .phone-link {
+  border-bottom-color: #ccc;
+  color: #ccc;
+  margin-bottom: 0;
+}
+.site-footer .contact-link {
+  border-bottom-color: #a9a9a9;
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  color: #a9a9a9;
+}
+.site-footer .contact-link:hover, .site-footer .contact-link:focus {
+  color: #fff;
+}
+.site-footer ul,
+.site-footer ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-footer ul:before, .site-footer ul:after,
+.site-footer ol:before,
+.site-footer ol:after {
+  content: ' ';
+  display: table;
+}
+.site-footer ul:after,
+.site-footer ol:after {
+  clear: both;
+}
+.site-footer ul > li,
+.site-footer ol > li {
+  display: block;
+  position: relative;
+}
+.site-footer ul > li > a,
+.site-footer ol > li > a {
+  position: relative;
+  text-decoration: none;
+}
+.site-footer ul > li > a:hover, .site-footer ul > li > a:focus,
+.site-footer ol > li > a:hover,
+.site-footer ol > li > a:focus {
+  text-decoration: none;
+}
+.site-footer .social-media {
+  margin-bottom: 30px;
+}
+.site-footer .social-media > li {
+  float: left;
+}
+.site-footer .social-media > li > a {
+  border-bottom: 0;
+  color: #a9a9a9;
+  font-size: 38px;
+  margin-right: 10px;
+}
+.site-footer .social-media > li > a:hover, .site-footer .social-media > li > a:focus {
+  color: #fff;
+}
+.site-footer .social-media > li:last-child > a {
+  margin-right: 0;
+}
+.site-footer .contact-info {
+  float: left;
+}
+.site-footer .big-foot {
+  background-color: #1e1e1e;
+  padding-bottom: 14px;
+  padding-top: 40px;
+}
+.site-footer .big-foot img {
+  max-width: 300px;
+}
+.site-footer .big-foot-nav > li {
+  margin-bottom: 12px;
+}
+.site-footer .big-foot-nav > li > a {
+  border-bottom: 1px dotted;
+  border-bottom-color: #ccc;
+  color: #ccc;
+  text-decoration: none;
+}
+.site-footer .big-foot-nav > li > a:hover, .site-footer .big-foot-nav > li > a:focus {
+  color: white;
+}
+
+@media (max-width: 991px) {
+  .site-footer h2 {
+    cursor: pointer;
+  }
+}

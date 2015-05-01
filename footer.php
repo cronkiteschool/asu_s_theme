@@ -13,6 +13,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
 			<div class="big-foot">
+			<div class="contact-info">
 <?php
             //  =============================
             //  = Logo                      =
@@ -235,12 +236,16 @@
 				  echo wp_kses( sprintf( $contribute, $contribute_option ), wp_kses_allowed_html( 'post' ) );
 				}
 				?>
+			</div><!-- /.contact-info -->
 			
-			  </div>
-		<nav id="footer-navigation" class="footer-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="secondary-menu" aria-expanded="false"><?php _e( 'Secondary Menu', 'jrnopswp' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu' ) ); ?>
-		</nav><!-- #footer-navigation -->
+			<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'secondary',
+						'menu_id' => 'secondary-menu',
+					)
+				);
+			?>
 			</div><!-- /.big-foot -->
 
 			<div class="little-foot">
