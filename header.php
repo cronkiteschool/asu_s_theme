@@ -44,8 +44,33 @@
 		</div><!-- .asu_header -->
 
 		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			<div id="site-name-desktop" class="section site-name-desktop">
+			  <div class="container">
+				<h1 class="site-title" id="asu_school_name">
+				  <?php
+					// Print the parent organization and its link
+					// Do we have a parent org?
+					$org_option = jrnopswp_s_options( 'org' );
+				  if ( $org_option &&
+						   $org_option !== '' ) {
+					  $prefix   = '<span class="first-word">%1$s</span>&nbsp;|&nbsp;';
+					  // Does the parent org have a link?
+					  $org_link_option = jrnopswp_s_options( 'org_link' );
+					if ( $org_link_option &&
+						   $org_link_option !== '' ) {
+						$wrapper = '<a href="%1$s" id="org-link-site-title">%2$s</a>';
+
+						$wrapper = sprintf( $wrapper, esc_html( $org_link_option ), '%1$s' );
+						$prefix  = sprintf( $prefix, $wrapper );
+					}
+
+					echo wp_kses( sprintf( $prefix, esc_html( $org_option ) ), wp_kses_allowed_html( 'post' ) );
+				  }
+				  ?>
+				  <a href="<?php echo esc_url( home_url() ); ?>" id="blog-name-site-title"><?php bloginfo( 'name' ); ?></a>
+				</h1>
+			  </div>
+			</div>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
