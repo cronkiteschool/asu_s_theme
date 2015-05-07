@@ -12,7 +12,6 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<div class="big-foot">
 			<div class="contact-info">
 <?php
             //  =============================
@@ -246,12 +245,10 @@
 					)
 				);
 			?>
-			</div><!-- /.big-foot -->
-
-			<div class="little-foot">
-				<?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/footer.shtml'); ?><!-- ASU Footer -->
-			</div><!-- /.little-foot -->
 		</div><!-- .site-info -->
+		<div class="asu-info">
+			<?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/footer.shtml'); ?><!-- ASU Footer -->
+		</div><!-- /.asu-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

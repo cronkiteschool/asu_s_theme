@@ -6,6 +6,9 @@
  *
  * @package jrnopswp
  */
+
+$home_url  = esc_url( home_url( '/' ) );
+
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -45,7 +48,6 @@
 
 		<div class="site-branding">
 			<div id="site-name-desktop" class="section site-name-desktop">
-			  <div class="container">
 				<h1 class="site-title" id="asu_school_name">
 				  <?php
 					// Print the parent organization and its link
@@ -67,15 +69,33 @@
 					echo wp_kses( sprintf( $prefix, esc_html( $org_option ) ), wp_kses_allowed_html( 'post' ) );
 				  }
 				  ?>
-				  <a href="<?php echo esc_url( home_url() ); ?>" id="blog-name-site-title"><?php bloginfo( 'name' ); ?></a>
+				  <a href="<?php echo $home_url; ?>" id="blog-name-site-title"><?php bloginfo( 'name' ); ?></a>
 				</h1>
-			  </div>
 			</div>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php _e( 'Primary Menu', 'jrnopswp' ); ?></button>
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+			<a href="<?php echo $home_url; ?>" id="site-name-little" class="site-name-little"><?php bloginfo( 'name' ); ?></a>
+			<button class="menu-toggle alignright" aria-controls="primary-menu" aria-expanded="false">
+				<i class="fa fa-bars"></i>
+			</button>
+			<?php
+				$wrapper  = '<ul id="%1$s" class="%2$s">';
+				$wrapper .= '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">';
+				$wrapper .= "<a href=\"$home_url\" title=\"Home\"  id=\"home-icon-main-nav\">";
+				$wrapper .= '<span class="fa fa-home menu-home-icon" aria-hidden="true"></span><span class="menu-home-text">Home</span>';
+				$wrapper .= '</a>';
+				$wrapper .= '</li>';
+				$wrapper .= '%3$s';
+				$wrapper .= '</ul>';
+
+				wp_nav_menu( array(
+					'theme_location' => 'primary',
+					'menu_id' => 'primary-menu',
+					'container' => false,
+					'items_wrap' => $wrapper,
+				));
+			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 

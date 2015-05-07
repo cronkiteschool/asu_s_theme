@@ -552,10 +552,10 @@ a:active {
 .main-navigation a {
 	background-color: transparent;
 	color: #ededed;
-	font-size: 16px;
+	font-size: .8em;
 	font-weight: bold;
 	line-height: 1;
-	padding: 20px;
+	padding: 1em 1.5em;
 	display: block;
 	text-decoration: none;
 }
@@ -564,7 +564,6 @@ a:active {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	float: left;
 	position: absolute;
-	top: 1.5em;
 	left: -999em;
 	z-index: 99999;
 }
@@ -606,18 +605,53 @@ a:active {
 .main-navigation .current_page_ancestor > a {
 }
 
+.main-navigation > ul > li > a:hover {
+  background-color: black;
+  color: #ffb310;
+}
+
+.main-navigation .sub-menu {
+  background-color: #1f1f1f;
+  border: 1px solid black;
+  border-color: transparent;
+  border-radius: 0 0 .20em .20em;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.main-navigation .menu-home-text {
+	display: none;
+}
+
 /* Small menu. */
 .menu-toggle {
-	display: none;
+	display: none !important;
+}
+
+.main-navigation button {
+	color: #ededed;
+	background-color: inherit;
+	font-size: 1rem;
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
 @media screen and (max-width: 600px) {
 	.menu-toggle,
 	.main-navigation.toggled .nav-menu {
-		display: block;
+		display: inline-block !important;
 	}
 
 	.main-navigation ul {
+		display: none;
+	}
+
+	.main-navigation .menu-home-text {
+		display: block;
+	}
+
+	.main-navigation .menu-home-icon {
 		display: none;
 	}
 }
@@ -713,8 +747,8 @@ a:active {
 .site-header:after,
 .site-content:before,
 .site-content:after,
-.site-footer:before,
-.site-footer:after {
+.site-info:before,
+.site-info:after {
 	content: "";
 	display: table;
 }
@@ -724,7 +758,7 @@ a:active {
 .comment-content:after,
 .site-header:after,
 .site-content:after,
-.site-footer:after {
+.site-info:after {
 	clear: both;
 }
 
@@ -866,12 +900,12 @@ article.post {
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
 .infinite-scroll .posts-navigation, /* Older / Newer Posts Navigation (always hidden) */
-.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
+.infinite-scroll.neverending .site-info { /* Theme Footer (when set to scrolling) */
 	display: none;
 }
 
 /* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before. */
-.infinity-end.neverending .site-footer {
+.infinity-end.neverending .site-info {
 	display: block;
 }
 
@@ -970,7 +1004,7 @@ object {
 13.0 Layout
 --------------------------------------------------------------*/
 
-.site-content, .site-footer .big-foot {
+.site-content, .site-info .asu-info {
 	min-height: 1px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -1016,115 +1050,101 @@ object {
     }
 }
 
-.site-footer {
-	clear: both;
-	width: 100%;
-}
-
-.site-footer h1 {
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-.site-footer h2 {
-  color: #fff;
-  font-size: 21px;
-  font-weight: normal;
-  margin-bottom: 16px;
-}
-.site-footer a:not(.btn),
-.site-footer address,
-.site-footer .phone-link {
+.site-info .phone-link, .site-info address {
   border-bottom-color: #ccc;
   color: #ccc;
   margin-bottom: 0;
 }
-.site-footer .contact-link {
+.site-info .contact-link {
   border-bottom-color: #a9a9a9;
   border-bottom-style: dotted;
   border-bottom-width: 1px;
   color: #a9a9a9;
 }
-.site-footer .contact-link:hover, .site-footer .contact-link:focus {
+.site-info .contact-link:hover, .site-info .contact-link:focus {
   color: #fff;
 }
-.site-footer ul,
-.site-footer ol {
+.site-info ul,
+.site-info ol {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-.site-footer ul:before, .site-footer ul:after,
-.site-footer ol:before,
-.site-footer ol:after {
-  content: ' ';
-  display: table;
-}
-.site-footer ul:after,
-.site-footer ol:after {
-  clear: both;
-}
-.site-footer ul > li,
-.site-footer ol > li {
-  display: block;
-  position: relative;
-}
-.site-footer ul > li > a,
-.site-footer ol > li > a {
+
+.site-info ul > li > a,
+.site-info ol > li > a {
   position: relative;
   text-decoration: none;
 }
-.site-footer ul > li > a:hover, .site-footer ul > li > a:focus,
-.site-footer ol > li > a:hover,
-.site-footer ol > li > a:focus {
+.site-info ul > li > a:hover, .site-info ul > li > a:focus,
+.site-info ol > li > a:hover,
+.site-info ol > li > a:focus {
   text-decoration: none;
 }
-.site-footer .social-media {
-  margin-bottom: 30px;
-}
-.site-footer .social-media > li {
+.site-info .social-media > li {
   float: left;
 }
-.site-footer .social-media > li > a {
+.site-info .social-media > li > a {
   border-bottom: 0;
   color: #a9a9a9;
-  font-size: 38px;
+  font-size: 2rem;
   margin-right: 10px;
 }
-.site-footer .social-media > li > a:hover, .site-footer .social-media > li > a:focus {
+.site-info .social-media > li > a:hover, .site-info .social-media > li > a:focus {
   color: #fff;
 }
-.site-footer .social-media > li:last-child > a {
+.site-info .social-media > li:last-child > a {
   margin-right: 0;
 }
-.site-footer .contact-info {
+.site-info .contact-info {
   float: left;
+  width: 20%;
+  margin-left: 2em;
 }
-.site-footer .big-foot {
+.site-info {
   background-color: #1e1e1e;
-  padding-bottom: 14px;
-  padding-top: 40px;
+  padding-top: 1em;
+  padding-bottom: .6em;
 }
-.site-footer .big-foot img {
+.site-info img {
   max-width: 300px;
 }
-.site-footer .big-foot-nav > li {
-  margin-bottom: 12px;
+
+.site-branding, .site-name-little {
+	white-space: nowrap;
+	/*overflow: hidden;*/
+	/*text-overflow: clip*/
 }
-.site-footer .big-foot-nav > li > a {
-  border-bottom: 1px dotted;
-  border-bottom-color: #ccc;
-  color: #ccc;
+#site-name-desktop h1 {
+  line-height: 1em;
+  padding: .4em .6em .8em;
+}
+#site-name-desktop h1.site-title {
+  font-size: 1.15em;
+  margin: 0;
+  padding: .5em 1em .5em .75em;
+}
+#site-name-desktop h1.site-title a {
+  border-bottom-color: transparent;
+  color: #4f5557;
+  font-weight: bold;
   text-decoration: none;
 }
-.site-footer .big-foot-nav > li > a:hover, .site-footer .big-foot-nav > li > a:focus {
-  color: white;
+#site-name-desktop h1.site-title a:first-child {
+  color: #000;
+}
+#site-name-desktop h1.site-title a:hover, #site-name-desktop h1.site-title a:focus {
+  text-decoration: underline;
+}
+#site-name-little {
+	display: none;
 }
 
-@media (max-width: 991px) {
-  .site-footer h2 {
-    cursor: pointer;
-  }
+@media handheld, only screen and (max-width: 600px) {
+	#site-name-little {
+		display: inline-block;
+	}
+	#site-name-desktop {
+        display: none;
+	}
 }
