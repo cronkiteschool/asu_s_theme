@@ -74,6 +74,11 @@ $home_url  = esc_url( home_url( '/' ) );
 			</div>
 		</div><!-- .site-branding -->
 
+		<div id="navigation">
+			<form id="search" action="<?php echo $home_url; ?>/" method="get">
+				<div id="label"><label for="search-terms" id="search-label"><i id="search-icon" class="fa fa-search"></i></label></div>
+				<div id="input"><input type="text" name="s" id="search-terms" placeholder="Search for..."></div>
+			</form>
 		<nav id="site-navigation" class="main-navigation" role="navigation">
 			<a href="<?php echo $home_url; ?>" id="site-name-little" class="site-name-little"><?php bloginfo( 'name' ); ?></a>
 			<button class="menu-toggle alignright" aria-controls="primary-menu" aria-expanded="false">
@@ -96,7 +101,8 @@ $home_url  = esc_url( home_url( '/' ) );
 					'items_wrap' => $wrapper,
 				));
 			?>
-		</nav><!-- #site-navigation -->
+		</nav><!-- #main-navigation -->
+		</div><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">
