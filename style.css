@@ -1,5 +1,5 @@
 /*
-Theme Name: jrnopswp
+Theme Name: asu_s
 Theme URI: http://github.com/cronkiteschool/
 Author: Cronkite School IT
 Author URI: http://automattic.com/
@@ -7,13 +7,13 @@ Description: A theme based on <code>_s</code>, or <em>underscores</em>.
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: jrnopswp
+Text Domain: asu_s
 Tags:
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-jrnopswp is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+asu_s is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
@@ -541,7 +541,7 @@ a:active {
 .main-navigation {
 	position: relative;
 	z-index: 10;
-	padding-left: 70px;
+	padding-left: 2em;
 }
 
 .main-navigation ul {
@@ -1162,6 +1162,8 @@ object {
     /*left: 0;*/
     /*width: 60px;*/
     /*height: 60px;*/
+    line-height: 1;
+    padding: .5em .5em;
 }
 #label {
     /*width: 60px;*/
@@ -1187,9 +1189,9 @@ object {
 #input {
 	position: absolute;
     top: 0;
-    left: 60px;
+    left: 2em;
     width: 450px;
-    height: 60px;
+    height: 3em;
     z-index: 5;
     overflow: hidden;
 }
@@ -1201,7 +1203,7 @@ object {
     width: 450px;
     height: 100%;
     margin: 0;
-    padding: 0 10px;
+    padding: 0 1em;
     border: none;
     background-color: #f5f5f5;
     color: #666;

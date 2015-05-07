@@ -1,6 +1,6 @@
 <?php
 /**
- * @package jrnopswp
+ * @package asu_s
  */
 ?>
 
@@ -9,7 +9,7 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
 		<div class="entry-meta">
-			<?php jrnopswp_posted_on(); ?>
+			<?php asu_s_posted_on(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
@@ -17,13 +17,13 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'jrnopswp' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'asu_s' ),
 				'after'  => '</div>',
 			) );
 		?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php jrnopswp_entry_footer(); ?>
+		<?php asu_s_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

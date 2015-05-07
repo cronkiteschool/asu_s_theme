@@ -2,7 +2,7 @@
 /**
  * The sidebar containing the main widget area.
  *
- * @package jrnopswp
+ * @package asu_s
  */
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {

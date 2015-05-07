@@ -7,7 +7,7 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package jrnopswp
+ * @package asu_s
  */
 
 get_header(); ?>

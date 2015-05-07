@@ -1,8 +1,8 @@
 <?php
 /**
- * jrnopswp Theme Customizer
+ * asu_s Theme Customizer
  *
- * @package jrnopswp
+ * @package asu_s
  */
 
 /**
@@ -491,25 +491,25 @@ add_action( 'customize_register', 'wordpress_jrnops_customize_register' );
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function jrnopswp_customize_register( $wp_customize ) {
+function asu_s_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 }
-add_action( 'customize_register', 'jrnopswp_customize_register' );
+add_action( 'customize_register', 'asu_s_customize_register' );
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function jrnopswp_customize_preview_js() {
-	wp_enqueue_script( 'jrnopswp_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
+function asu_s_customize_preview_js() {
+	wp_enqueue_script( 'asu_s_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
 }
-add_action( 'customize_preview_init', 'jrnopswp_customize_preview_js' );
+add_action( 'customize_preview_init', 'asu_s_customize_preview_js' );
 
 /**
- * Returns the options array for jrnopswp_s
+ * Returns the options array for asu_s
  */
-function jrnopswp_s_options($name, $default = false) {
+function asu_s_options($name, $default = false) {
     $options = ( get_option( 'wordpress_jrnops_theme_options' ) ) ? get_option( 'wordpress_jrnops_theme_options' ) : null;
     // return the option if it exists
     if ( isset( $options[ $name ] ) ) {
@@ -554,7 +554,7 @@ function wordpress_jrnops_sanitize_phone( $data ) {
  *
  * Can be filtered with {@see 'asu_campus_addresses'}.
  *
- * @since jrnopswp 1.0
+ * @since asu_s 1.0
  *
  * @return array An associative array of ASU campus options.
  */
@@ -599,12 +599,12 @@ if ( ! function_exists( 'asu_get_campus_address' ) ) :
 /**
  * Get the current ASU Campus Address.
  *
- * @since jrnopswp 1.0
+ * @since asu_s 1.0
  *
  * @return a string address of either the current or default campus selected.
  */
 function asu_get_campus_address() {
-	$asu_campus_option = jrnopswp_s_options( 'campus_name', $default = 'default' );
+	$asu_campus_option = asu_s_options( 'campus_name', $default = 'default' );
 	$campus_addresses       = asu_get_campus_addresses();
 	if ( array_key_exists( $asu_campus_option, $campus_addresses ) ) {
 		return $campus_addresses[ $asu_campus_option ]['address'];
@@ -617,7 +617,7 @@ if ( ! function_exists( 'asu_get_campus_choices' ) ) :
 /**
  * Returns an array of campus choices registered for ASU.
  *
- * @since jrnopswp 1.0
+ * @since asu_s 1.0
  *
  * @return array Array of ASU campuses.
  */
@@ -635,7 +635,7 @@ if ( ! function_exists( 'asu_sanitize_campus_choices' ) ) :
 /**
  * Sanitization callback for ASU Campuses.
  *
- * @since jrnopswp 1.0
+ * @since asu_s 1.0
  *
  * @param string $value ASU campus name value.
  * @return string ASU campus name.

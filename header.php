@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package jrnopswp
+ * @package asu_s
  */
 
 $home_url  = esc_url( home_url( '/' ) );
@@ -28,13 +28,13 @@ $home_url  = esc_url( home_url( '/' ) );
 <?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/gtm.shtml'); ?><!-- ASU Google Tag Manager -->
 
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'jrnopswp' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'asu' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
 		<div id="asu_header">
 			<?php $asu_header =  file_get_contents('http://www.asu.edu/asuthemes/4.3/headers/default.shtml'); ?>
 			<?php
-				$search_option = jrnopswp_s_options( 'header_search' );
+				$search_option = asu_s_options( 'header_search' );
 				if (!$search_option == 1):
 					$asu_header = preg_replace('#<div id="asu_search">.*?</div>#is', ' ', $asu_header);
 					$asu_header = preg_replace('#<div id="main-search" class="main-search [^"]*">.*?</div>#is', ' ', $asu_header);
@@ -52,12 +52,12 @@ $home_url  = esc_url( home_url( '/' ) );
 				  <?php
 					// Print the parent organization and its link
 					// Do we have a parent org?
-					$org_option = jrnopswp_s_options( 'org' );
+					$org_option = asu_s_options( 'org' );
 				  if ( $org_option &&
 						   $org_option !== '' ) {
 					  $prefix   = '<span class="first-word">%1$s</span>&nbsp;|&nbsp;';
 					  // Does the parent org have a link?
-					  $org_link_option = jrnopswp_s_options( 'org_link' );
+					  $org_link_option = asu_s_options( 'org_link' );
 					if ( $org_link_option &&
 						   $org_link_option !== '' ) {
 						$wrapper = '<a href="%1$s" id="org-link-site-title">%2$s</a>';

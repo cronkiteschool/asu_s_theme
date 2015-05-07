@@ -2,7 +2,7 @@
 /**
  * The template for displaying all single posts.
  *
- * @package jrnopswp
+ * @package asu_s
  */
 
 get_header(); ?>

@@ -12,37 +12,37 @@
 	<?php endif; // End header image check. ?>
 
  *
- * @package jrnopswp
+ * @package asu_s
  */
 
 /**
  * Set up the WordPress core custom header feature.
  *
- * @uses jrnopswp_header_style()
- * @uses jrnopswp_admin_header_style()
- * @uses jrnopswp_admin_header_image()
+ * @uses asu_s_header_style()
+ * @uses asu_s_admin_header_style()
+ * @uses asu_s_admin_header_image()
  */
-function jrnopswp_custom_header_setup() {
-	add_theme_support( 'custom-header', apply_filters( 'jrnopswp_custom_header_args', array(
+function asu_s_custom_header_setup() {
+	add_theme_support( 'custom-header', apply_filters( 'asu_s_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
 		'width'                  => 1000,
 		'height'                 => 250,
 		'flex-height'            => true,
-		'wp-head-callback'       => 'jrnopswp_header_style',
-		'admin-head-callback'    => 'jrnopswp_admin_header_style',
-		'admin-preview-callback' => 'jrnopswp_admin_header_image',
+		'wp-head-callback'       => 'asu_s_header_style',
+		'admin-head-callback'    => 'asu_s_admin_header_style',
+		'admin-preview-callback' => 'asu_s_admin_header_image',
 	) ) );
 }
-add_action( 'after_setup_theme', 'jrnopswp_custom_header_setup' );
+add_action( 'after_setup_theme', 'asu_s_custom_header_setup' );
 
-if ( ! function_exists( 'jrnopswp_header_style' ) ) :
+if ( ! function_exists( 'asu_s_header_style' ) ) :
 /**
  * Styles the header image and text displayed on the blog
  *
- * @see jrnopswp_custom_header_setup().
+ * @see asu_s_custom_header_setup().
  */
-function jrnopswp_header_style() {
+function asu_s_header_style() {
 	$header_text_color = get_header_textcolor();
 
 	// If no custom options for text are set, let's bail
@@ -75,15 +75,15 @@ function jrnopswp_header_style() {
 	</style>
 	<?php
 }
-endif; // jrnopswp_header_style
+endif; // asu_s_header_style
 
-if ( ! function_exists( 'jrnopswp_admin_header_style' ) ) :
+if ( ! function_exists( 'asu_s_admin_header_style' ) ) :
 /**
  * Styles the header image displayed on the Appearance > Header admin panel.
  *
- * @see jrnopswp_custom_header_setup().
+ * @see asu_s_custom_header_setup().
  */
-function jrnopswp_admin_header_style() {
+function asu_s_admin_header_style() {
 ?>
 	<style type="text/css">
 		.appearance_page_custom-header #headimg {
@@ -103,15 +103,15 @@ function jrnopswp_admin_header_style() {
 	</style>
 <?php
 }
-endif; // jrnopswp_admin_header_style
+endif; // asu_s_admin_header_style
 
-if ( ! function_exists( 'jrnopswp_admin_header_image' ) ) :
+if ( ! function_exists( 'asu_s_admin_header_image' ) ) :
 /**
  * Custom header image markup displayed on the Appearance > Header admin panel.
  *
- * @see jrnopswp_custom_header_setup().
+ * @see asu_s_custom_header_setup().
  */
-function jrnopswp_admin_header_image() {
+function asu_s_admin_header_image() {
 	$style = sprintf( ' style="color:#%s;"', get_header_textcolor() );
 ?>
 	<div id="headimg">
@@ -123,4 +123,4 @@ function jrnopswp_admin_header_image() {
 	</div>
 <?php
 }
-endif; // jrnopswp_admin_header_image
+endif; // asu_s_admin_header_image

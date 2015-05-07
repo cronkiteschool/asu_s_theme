@@ -4,7 +4,7 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package jrnopswp
+ * @package asu_s
  */
 
 get_header(); ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package jrnopswp
+ * @package asu_s
  */
 ?>
 
@@ -10,7 +10,7 @@
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php jrnopswp_posted_on(); ?>
+			<?php asu_s_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -19,20 +19,20 @@
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'jrnopswp' ),
+				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'asu_s' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			) );
 		?>
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'jrnopswp' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'asu_s' ),
 				'after'  => '</div>',
 			) );
 		?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php jrnopswp_entry_footer(); ?>
+		<?php asu_s_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
