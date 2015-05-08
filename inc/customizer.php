@@ -9,16 +9,16 @@
  * Custom theme manager.  Special settings for the theme
  * get defined here.
  */
-function wordpress_jrnops_customize_register( $wp_customize ) {
+function wordpress_asu_s_customize_register( $wp_customize ) {
   //  =============================
   //  =============================
   //  = School Info Section       =
   //  =============================
   //  =============================
   $wp_customize->add_section(
-      'wordpress_jrnops_theme_section' ,
+      'wordpress_asu_s_theme_section' ,
       array(
-        'title'      => __( 'School Information','asu_wordpress' ),
+        'title'      => __( 'School Information','asu_s' ),
         'priority'   => 30,
       )
   );
@@ -26,20 +26,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = School Logo               =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[logo]',
+      'wordpress_asu_s_theme_options[logo]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_logo_text',
+      'wordpress_asu_s_logo_text',
       array(
-        'label'      => __( 'School Logo Full URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[logo]',
+        'label'      => __( 'School Logo Full URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[logo]',
         'priority'   => 0,
       )
   );
@@ -47,20 +47,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Organization Text         =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[org]',
+      'wordpress_asu_s_theme_options[org]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'sanitize_text_field',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_org_text',
+      'wordpress_asu_s_org_text',
       array(
-        'label'      => __( 'Parent Organization', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[org]',
+        'label'      => __( 'Parent Organization', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[org]',
         'priority'   => 1,
       )
   );
@@ -68,20 +68,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Organization Link         =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[org_link]',
+      'wordpress_asu_s_theme_options[org_link]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_org_link',
+      'wordpress_asu_s_org_link',
       array(
-        'label'      => __( 'Parent Organization URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[org_link]',
+        'label'      => __( 'Parent Organization URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[org_link]',
         'priority'   => 10,
       )
   );
@@ -89,7 +89,7 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Campus                    =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[campus_name]',
+      'wordpress_asu_s_theme_options[campus_name]',
       array(
         'default'           => 'default',
 		'sanitize_callback' => 'asu_sanitize_campus_choices',
@@ -101,9 +101,9 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_campus_name',
       array(
-        'settings'   => 'wordpress_jrnops_theme_options[campus_name]',
-        'label'      => __( 'Select Campus Name', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[campus_name]',
+        'label'      => __( 'Select Campus Name', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
 		'type'    => 'select',
 		'choices'    => asu_get_campus_choices(),
 		'priority' => 20,
@@ -113,20 +113,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = School Address            =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[address]',
+      'wordpress_asu_s_theme_options[address]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_nothing',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_address',
+      'wordpress_asu_s_address',
       array(
-        'label'      => __( 'School Address', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[address]',
+        'label'      => __( 'School Address', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[address]',
         'type'       => 'textarea',
         'priority'   => 21,
       )
@@ -135,20 +135,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Phone                     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[phone]',
+      'wordpress_asu_s_theme_options[phone]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_phone',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_phone',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_phone',
+      'wordpress_asu_s_phone',
       array(
-        'label'      => __( 'Phone Number', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[phone]',
+        'label'      => __( 'Phone Number', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[phone]',
         'priority'   => 30,
       )
   );
@@ -156,20 +156,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Fax                       =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[fax]',
+      'wordpress_asu_s_theme_options[fax]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_phone',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_phone',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_fax',
+      'wordpress_asu_s_fax',
       array(
-        'label'      => __( 'Fax Number', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[fax]',
+        'label'      => __( 'Fax Number', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[fax]',
         'priority'   => 40,
       )
   );
@@ -177,20 +177,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Contact Us Email or URL   =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[contact]',
+      'wordpress_asu_s_theme_options[contact]',
       array(
         'default'        => '',
         'capability'     => 'edit_theme_options',
         'type'           => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_email_or_url',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_email_or_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_contact',
+      'wordpress_asu_s_contact',
       array(
-        'label'      => __( 'Contact Us Email or URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[contact]',
+        'label'      => __( 'Contact Us Email or URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[contact]',
         'priority'   => 50,
       )
   );
@@ -198,20 +198,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Contact Us Email Subject  =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[contact_subject]',
+      'wordpress_asu_s_theme_options[contact_subject]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'sanitize_text_field',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_contact_subject',
+      'wordpress_asu_s_contact_subject',
       array(
-        'label'      => __( 'Contact Us Email Subject (Optional)', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[contact_subject]',
+        'label'      => __( 'Contact Us Email Subject (Optional)', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[contact_subject]',
         'priority'   => 60,
       )
   );
@@ -219,20 +219,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Contact Us Email Body     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[contact_body]',
+      'wordpress_asu_s_theme_options[contact_body]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_nothing',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_contact_body',
+      'wordpress_asu_s_contact_body',
       array(
-        'label'    => __( 'Contact Us Email Body (Optional)', 'asu_wordpress' ),
-        'section'  => 'wordpress_jrnops_theme_section',
-        'settings' => 'wordpress_jrnops_theme_options[contact_body]',
+        'label'    => __( 'Contact Us Email Body (Optional)', 'asu_s' ),
+        'section'  => 'wordpress_asu_s_theme_section',
+        'settings' => 'wordpress_asu_s_theme_options[contact_body]',
         'type'     => 'textarea',
         'priority' => 70,
       )
@@ -241,20 +241,20 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Contribute URL            =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[contribute]',
+      'wordpress_asu_s_theme_options[contribute]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_url',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_contribute',
+      'wordpress_asu_s_contribute',
       array(
-        'label'      => __( 'Contribute URL (Optional)', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section',
-        'settings'   => 'wordpress_jrnops_theme_options[contribute]',
+        'label'      => __( 'Contribute URL (Optional)', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section',
+        'settings'   => 'wordpress_asu_s_theme_options[contribute]',
         'priority'   => 80,
       )
   );
@@ -264,9 +264,9 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  =============================
   //  =============================
   $wp_customize->add_section(
-      'wordpress_jrnops_theme_section_social',
+      'wordpress_asu_s_theme_section_social',
       array(
-        'title'      => __( 'Social Media','asu_wordpress' ),
+        'title'      => __( 'Social Media','asu_s' ),
         'priority'   => 31,
       )
   );
@@ -274,180 +274,180 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = Facebook                  =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[facebook]',
+      'wordpress_asu_s_theme_options[facebook]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_facebook',
+      'wordpress_asu_s_facebook',
       array(
-        'label'      => __( 'Facebook URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[facebook]',
+        'label'      => __( 'Facebook URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[facebook]',
       )
   );
   //  =============================
   //  = Twitter                   =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[twitter]',
+      'wordpress_asu_s_theme_options[twitter]',
       array(
         'default'        => '',
         'capability'     => 'edit_theme_options',
         'type'           => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_twitter',
+      'wordpress_asu_s_twitter',
       array(
-        'label'      => __( 'Twitter URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[twitter]',
+        'label'      => __( 'Twitter URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[twitter]',
       )
   );
   //  =============================
   //  = Google+                   =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[google_plus]',
+      'wordpress_asu_s_theme_options[google_plus]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_google_plus',
+      'wordpress_asu_s_google_plus',
       array(
-        'label'      => __( 'Google Plus URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[google_plus]',
+        'label'      => __( 'Google Plus URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[google_plus]',
       )
   );
   //  =============================
   //  = LinkedIn                  =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[linkedin]',
+      'wordpress_asu_s_theme_options[linkedin]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_linkedin',
+      'wordpress_asu_s_linkedin',
       array(
-        'label'      => __( 'Linked In URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[linkedin]',
+        'label'      => __( 'Linked In URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[linkedin]',
       )
   );
   //  =============================
   //  = Youtube                   =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[youtube]',
+      'wordpress_asu_s_theme_options[youtube]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_youtube',
+      'wordpress_asu_s_youtube',
       array(
-        'label'      => __( 'Youtube URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[youtube]',
+        'label'      => __( 'Youtube URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[youtube]',
       )
   );
   //  =============================
   //  = Vimeo                     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[vimeo]',
+      'wordpress_asu_s_theme_options[vimeo]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_vimeo',
+      'wordpress_asu_s_vimeo',
       array(
-        'label'      => __( 'Vimeo URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[vimeo]',
+        'label'      => __( 'Vimeo URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[vimeo]',
       )
   );
   //  =============================
   //  = Instagram                 =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[instagram]',
+      'wordpress_asu_s_theme_options[instagram]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_instagram',
+      'wordpress_asu_s_instagram',
       array(
-        'label'      => __( 'Instagram URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[instagram]',
+        'label'      => __( 'Instagram URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[instagram]',
       )
   );
   //  =============================
   //  = Fickr                     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[flickr]',
+      'wordpress_asu_s_theme_options[flickr]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_flickr',
+      'wordpress_asu_s_flickr',
       array(
-        'label'      => __( 'Flickr URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[flickr]',
+        'label'      => __( 'Flickr URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[flickr]',
       )
   );
   //  =============================
   //  = RSS                 =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[rss]',
+      'wordpress_asu_s_theme_options[rss]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_jrnops_sanitize_nothing',
+        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_rss',
+      'wordpress_asu_s_rss',
       array(
-        'label'      => __( 'RSS URL', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_social',
-        'settings'   => 'wordpress_jrnops_theme_options[rss]',
+        'label'      => __( 'RSS URL', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_social',
+        'settings'   => 'wordpress_asu_s_theme_options[rss]',
       )
   );
   //  =============================
@@ -456,9 +456,9 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  =============================
   //  =============================
   $wp_customize->add_section(
-      'wordpress_jrnops_theme_section_search',
+      'wordpress_asu_s_theme_section_search',
       array(
-        'title'      => __( 'Search','asu_wordpress' ),
+        'title'      => __( 'Search','asu_s' ),
         'priority'   => 40,
       )
   );
@@ -466,7 +466,7 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
   //  = ASU Google Search App     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_jrnops_theme_options[header_search]',
+      'wordpress_asu_s_theme_options[header_search]',
       array(
         'default'           => '1',
         'capability'        => 'edit_theme_options',
@@ -474,16 +474,16 @@ function wordpress_jrnops_customize_register( $wp_customize ) {
       )
   );
   $wp_customize->add_control(
-      'wordpress_jrnops_asu_gsa',
+      'wordpress_asu_s_asu_gsa',
       array(
-        'label'      => __( 'ASU Header Search Box', 'asu_wordpress' ),
-        'section'    => 'wordpress_jrnops_theme_section_search',
-        'settings'   => 'wordpress_jrnops_theme_options[header_search]',
+        'label'      => __( 'ASU Header Search Box', 'asu_s' ),
+        'section'    => 'wordpress_asu_s_theme_section_search',
+        'settings'   => 'wordpress_asu_s_theme_options[header_search]',
 		'type'    => 'checkbox',
       )
   );
 }
-add_action( 'customize_register', 'wordpress_jrnops_customize_register' );
+add_action( 'customize_register', 'wordpress_asu_s_customize_register' );
 
 
 /**
@@ -510,43 +510,50 @@ add_action( 'customize_preview_init', 'asu_s_customize_preview_js' );
  * Returns the options array for asu_s
  */
 function asu_s_options($name, $default = false) {
-    $options = ( get_option( 'wordpress_jrnops_theme_options' ) ) ? get_option( 'wordpress_jrnops_theme_options' ) : null;
+    $options = ( get_option( 'wordpress_asu_s_theme_options' ) ) ? get_option( 'wordpress_asu_s_theme_options' ) : null;
     // return the option if it exists
     if ( isset( $options[ $name ] ) ) {
-        return apply_filters( 'wordpress_jrnops_theme_options$name', $options[ $name ] );
+        return apply_filters( 'wordpress_asu_s_theme_options$name', $options[ $name ] );
     }
     // return default if nothing else
-    return apply_filters( 'wordpress_jrnops_theme_options_$name', $default );
+    return apply_filters( 'wordpress_asu_s_theme_options_$name', $default );
 }
 
 /**
  * Sanitizer that does nothing
  */
-function wordpress_jrnops_sanitize_nothing( $data ) {
+function wordpress_asu_s_sanitize_nothing( $data ) {
   return $data;
 }
 /**
  * Sanitizer that checks if the data is an url
  */
-function wordpress_jrnops_sanitize_url( $data ) {
-  // TODO check that $data is an email or url
-  return $data;
+function wordpress_asu_s_sanitize_url( $data ) {
+  $protocols = array('http', 'https');
+  return esc_url( $data, $protocols );
 }
 /**
  * Sanitizer that checks if the data is an email or url
  */
-function wordpress_jrnops_sanitize_email_or_url( $data ) {
-  // TODO check that $data is an email or url
-  return $data;
+function wordpress_asu_s_sanitize_email_or_url( $data ) {
+  if (is_email( $data )) {
+    // Matches email, return data.
+    return sanitize_email( $data );
+  } else {
+	  return wordpress_asu_s_sanitize_url( $data );
+  }
 }
 /**
  * Sanitizer that checks if the data is a phone number
  */
-function wordpress_jrnops_sanitize_phone( $data ) {
-  // TODO check that $data is a phone number
-  return $data;
+function wordpress_asu_s_sanitize_phone( $data ) {
+  $reg = '/^[+]?([\d]{0,3})?[\(\.\-\s]?([\d]{3})[\)\.\-\s]*([\d]{3})[\.\-\s]?([\d]{4})$/';
+  if (preg_match($reg, $data)) { 
+    return $data;
+  } else {
+    return FALSE;
+  }
 }
-
 
 /**
  * Register Campus Addresses for ASU Theme.
@@ -561,35 +568,35 @@ function wordpress_jrnops_sanitize_phone( $data ) {
 function asu_get_campus_addresses() {
 	return apply_filters( 'asu_campus_addresses', array(
 		'default' => array(
-			'label'  => __( '', 'asu_wordpress' ),
+			'label'  => __( '', 'asu_s' ),
 			'address' => '',
 		),
 		'tempe' => array(
-			'label'  => __( 'Tempe', 'asu_wordpress' ),
+			'label'  => __( 'Tempe', 'asu_s' ),
 			'address' => 'Arizona State University - Tempe campus<br/>1151 S. Forest Ave.<br/>Tempe, AZ 85287 USA',
 		),
 		'polytechnic' => array(
-			'label'  => __( 'Polytechnic', 'asu_wordpress' ),
+			'label'  => __( 'Polytechnic', 'asu_s' ),
 			'address' => 'Arizona State University - Polytechnic campus<br/>Power Road and Williams Field Road<br/>7001 E. Williams Field Road<br/>Mesa, AZ 85212',
 		),
 		'downtown_phoenix' => array(
-			'label'  => __( 'Downtown Phoenix', 'asu_wordpress' ),
+			'label'  => __( 'Downtown Phoenix', 'asu_s' ),
 			'address' => 'Arizona State University - Downtown Phoenix<br/>411 N. Central, Suite 520<br/>Phoenix, AZ 85004',
 		),
 		'west' => array(
-			'label'  => __( 'West', 'asu_wordpress' ),
+			'label'  => __( 'West', 'asu_s' ),
 			'address' => 'Arizona State University - West campus<br/>4701 West Thunderbird Road<br/>PO Box 37100<br/>Phoenix, AZ 85069-7100',
 		),
 		'research_park' => array(
-			'label'  => __( 'Research Park', 'asu_wordpress' ),
+			'label'  => __( 'Research Park', 'asu_s' ),
 			'address' => 'Arizona State University - Research Park<br/>8750 S Science Dr<br/>Tempe, AZ 85284',
 		),
 		'skysong' => array(
-			'label'  => __( 'Skysong', 'asu_wordpress' ),
+			'label'  => __( 'Skysong', 'asu_s' ),
 			'address' => 'Arizona State University - SkySong<br/>1475 N. Scottsdale Rd, Suite 200<br/>Scottsdale, Arizona 85257-3538',
 		),
 		'lake_havasu' => array(
-			'label'  => __( 'Lake Havasu', 'asu_wordpress' ),
+			'label'  => __( 'Lake Havasu', 'asu_s' ),
 			'address' => 'Arizona State University - Lake Havasu<br/>100 University Way<br/>Lake Havasu City, AZ 86403',
 		),
 	) );

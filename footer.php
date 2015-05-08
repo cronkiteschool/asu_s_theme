@@ -47,8 +47,9 @@
 				$address_option = asu_s_options( 'address' );
 				if ( $address_option && $address_option !== '' ) {
 					echo wp_kses( nl2br( $address_option ), wp_kses_allowed_html( 'post' ) );
+					echo '<br/>';
 				}
-			?><br/>	
+			?>
 			<?php
               //  =============================
               //  = Phone                     =
@@ -94,9 +95,9 @@
 					//  =============================
 
 					// Do we have a subject line?
+					$contact_subject_option = asu_s_options( 'contact_subject' );
 					if ( $contact_subject_option &&
 						 $contact_subject_option !== '' ) {
-					  $contact_subject_option = asu_s_options( 'contact_subject' );
 					  $additional .= '&subject=' . rawurlencode( $contact_subject_option );
 					}
 
@@ -105,9 +106,9 @@
 					//  =============================
 
 					// Do we have a body?
+					$contact_body_option = asu_s_options( 'contact_body' );
 					if ( $contact_body_option &&
 						 $contact_body_option !== '' ) {
-					  $contact_body_option = asu_s_options( 'contact_body' );
 					  $additional .= '&body=' . rawurlencode( $contact_body_option );
 					}
 
@@ -237,14 +238,16 @@
 				?>
 			</div><!-- /.contact-info -->
 			
-			<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'secondary',
-						'menu_id' => 'secondary-menu',
-					)
-				);
-			?>
+			<div class="widget-area-footer">
+				<?php
+					wp_nav_menu(
+						array(
+							'theme_location' => 'secondary',
+							'menu_id' => 'secondary-menu',
+						)
+					);
+				?>
+			</div>
 		</div><!-- .site-info -->
 		<div class="asu-info">
 			<?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/footer.shtml'); ?><!-- ASU Footer -->

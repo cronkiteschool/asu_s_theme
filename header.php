@@ -44,7 +44,7 @@ $home_url  = esc_url( home_url( '/' ) );
 			<?php
 				echo $asu_header;
 			?><!-- ASU Header -->
-		</div><!-- .asu_header -->
+		<!-- .asu_header -->
 
 		<div class="site-branding">
 			<div id="site-name-desktop" class="section site-name-desktop">
@@ -75,8 +75,8 @@ $home_url  = esc_url( home_url( '/' ) );
 		</div><!-- .site-branding -->
 
 		<div id="navigation">
-			<form id="search-handheld" action="<?php echo $home_url; ?>/" method="get">
-				<div id="label-handheld"><label for="search-terms-handheld" id="search-label-handheld"><i id="search-icon-handheld" class="fa fa-search"></i></label></div>
+			<form id="search-handheld" role="search" action="<?php echo $home_url; ?>/" method="get">
+				<div id="label-handheld"><label for="search-terms-handheld" id="search-label-handheld" role=button><i id="search-icon-handheld" class="fa fa-search"></i></label></div>
 				<div id="input-handheld"><input type="text" name="s" id="search-terms-handheld" placeholder="Search for..."></div>
 			</form>
 			<nav id="site-navigation" class="main-navigation" role="navigation">

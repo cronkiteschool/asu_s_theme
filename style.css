@@ -839,7 +839,6 @@ a:active {
 --------------------------------------------------------------*/
 .widget {
 	color: #903;
-	margin: 0 0 1.5em;
 }
 
 /* Make sure select elements fit in widgets. */
@@ -852,8 +851,17 @@ a:active {
 	display: none;
 }
 
+
+@media handheld, only screen and (max-width: 799px) {
+    .widget_search {
+        display: none;
+        visibility: hidden;
+    }
+}
+
 .widget ul {
 	list-style: none;
+	margin: auto;
 	padding-left: 0;
 }
 
@@ -1115,13 +1123,6 @@ object {
 	}
 }
 
-@media handheld, only screen and (max-width: 799px) {
-    .widget_search {
-        display: none;
-        visibility: hidden;
-    }
-}
-
 .site-info .phone-link, .site-info address {
   border-bottom-color: #ccc;
   color: #ccc;
@@ -1218,5 +1219,9 @@ object {
 	#site-name-desktop {
         display: none;
 	}
+}
+.site {
+    margin: 0 auto;
+    max-width: 980px;
 }
 
