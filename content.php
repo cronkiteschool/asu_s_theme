@@ -19,14 +19,14 @@
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'asu_s' ),
+				esc_html__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'asu_s' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			) );
 		?>
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'asu_s' ),
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'asu_s' ),
 				'after'  => '</div>',
 			) );
 		?>

@@ -50,8 +50,8 @@ function asu_s_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'asu_s' ),
-        'secondary' => __( 'Footer Menu', 'asu_s' ),
+		'primary' => esc_html__( 'Primary Menu', 'asu_s' ),
+        'secondary' => esc_html__( 'Footer Menu', 'asu_s' ),
 	) );
 
 	/*
@@ -86,7 +86,7 @@ add_action( 'after_setup_theme', 'asu_s_setup' );
  */
 function asu_s_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'asu_s' ),
+		'name'          => esc_html__( 'Sidebar', 'asu_s' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',

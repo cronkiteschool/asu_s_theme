@@ -17,7 +17,7 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'asu_s' ),
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'asu_s' ),
 				'after'  => '</div>',
 			) );
 		?>

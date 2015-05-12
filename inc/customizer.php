@@ -23,7 +23,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_section(
       'asu_s_section_info' ,
       array(
-        'title'      => __( 'School Information','asu_s' ),
+        'title'      => esc_html__( 'School Information','asu_s' ),
         'priority'   => 30,
       )
   );
@@ -42,7 +42,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_logo_text',
       array(
-        'label'      => __( 'School Logo Full URL', 'asu_s' ),
+        'label'      => esc_html__( 'School Logo Full URL', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[logo]',
         'priority'   => 0,
@@ -63,7 +63,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_org_text',
       array(
-        'label'      => __( 'Parent Organization', 'asu_s' ),
+        'label'      => esc_html__( 'Parent Organization', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[org]',
         'priority'   => 1,
@@ -84,7 +84,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_org_link',
       array(
-        'label'      => __( 'Parent Organization URL', 'asu_s' ),
+        'label'      => esc_html__( 'Parent Organization URL', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[org_link]',
         'priority'   => 10,
@@ -107,7 +107,7 @@ function asu_s_customize_register( $wp_customize ) {
       'asu_campus_name',
       array(
         'settings'   => 'asu_s_options[campus_name]',
-        'label'      => __( 'Select Campus Name', 'asu_s' ),
+        'label'      => esc_html__( 'Select Campus Name', 'asu_s' ),
         'section'    => 'asu_s_section_info',
 		'type'    => 'select',
 		'choices'    => asu_get_campus_choices(),
@@ -129,7 +129,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_address',
       array(
-        'label'      => __( 'School Address', 'asu_s' ),
+        'label'      => esc_html__( 'School Address', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[address]',
         'type'       => 'textarea',
@@ -151,7 +151,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_phone',
       array(
-        'label'      => __( 'Phone Number', 'asu_s' ),
+        'label'      => esc_html__( 'Phone Number', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[phone]',
         'priority'   => 30,
@@ -172,7 +172,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_fax',
       array(
-        'label'      => __( 'Fax Number', 'asu_s' ),
+        'label'      => esc_html__( 'Fax Number', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[fax]',
         'priority'   => 40,
@@ -193,7 +193,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_contact',
       array(
-        'label'      => __( 'Contact Us Email or URL', 'asu_s' ),
+        'label'      => esc_html__( 'Contact Us Email or URL', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[contact]',
         'priority'   => 50,
@@ -214,7 +214,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_contact_subject',
       array(
-        'label'      => __( 'Contact Us Email Subject (Optional)', 'asu_s' ),
+        'label'      => esc_html__( 'Contact Us Email Subject (Optional)', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[contact_subject]',
         'priority'   => 60,
@@ -235,7 +235,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_contact_body',
       array(
-        'label'    => __( 'Contact Us Email Body (Optional)', 'asu_s' ),
+        'label'    => esc_html__( 'Contact Us Email Body (Optional)', 'asu_s' ),
         'section'  => 'asu_s_section_info',
         'settings' => 'asu_s_options[contact_body]',
         'type'     => 'textarea',
@@ -257,7 +257,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_contribute',
       array(
-        'label'      => __( 'Contribute URL (Optional)', 'asu_s' ),
+        'label'      => esc_html__( 'Contribute URL (Optional)', 'asu_s' ),
         'section'    => 'asu_s_section_info',
         'settings'   => 'asu_s_options[contribute]',
         'priority'   => 80,
@@ -271,7 +271,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_section(
       'asu_s_section_social',
       array(
-        'title'      => __( 'Social Media','asu_s' ),
+        'title'      => esc_html__( 'Social Media','asu_s' ),
         'priority'   => 31,
       )
   );
@@ -290,7 +290,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_facebook',
       array(
-        'label'      => __( 'Facebook URL', 'asu_s' ),
+        'label'      => esc_html__( 'Facebook URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[facebook]',
       )
@@ -310,7 +310,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_twitter',
       array(
-        'label'      => __( 'Twitter URL', 'asu_s' ),
+        'label'      => esc_html__( 'Twitter URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[twitter]',
       )
@@ -330,7 +330,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_google_plus',
       array(
-        'label'      => __( 'Google Plus URL', 'asu_s' ),
+        'label'      => esc_html__( 'Google Plus URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[google_plus]',
       )
@@ -350,7 +350,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_linkedin',
       array(
-        'label'      => __( 'Linked In URL', 'asu_s' ),
+        'label'      => esc_html__( 'Linked In URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[linkedin]',
       )
@@ -370,7 +370,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_youtube',
       array(
-        'label'      => __( 'Youtube URL', 'asu_s' ),
+        'label'      => esc_html__( 'Youtube URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[youtube]',
       )
@@ -390,7 +390,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_vimeo',
       array(
-        'label'      => __( 'Vimeo URL', 'asu_s' ),
+        'label'      => esc_html__( 'Vimeo URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[vimeo]',
       )
@@ -410,7 +410,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_instagram',
       array(
-        'label'      => __( 'Instagram URL', 'asu_s' ),
+        'label'      => esc_html__( 'Instagram URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[instagram]',
       )
@@ -430,7 +430,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_flickr',
       array(
-        'label'      => __( 'Flickr URL', 'asu_s' ),
+        'label'      => esc_html__( 'Flickr URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[flickr]',
       )
@@ -450,7 +450,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_rss',
       array(
-        'label'      => __( 'RSS URL', 'asu_s' ),
+        'label'      => esc_html__( 'RSS URL', 'asu_s' ),
         'section'    => 'asu_s_section_social',
         'settings'   => 'asu_s_options[rss]',
       )
@@ -463,7 +463,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_section(
       'asu_s_section_search',
       array(
-        'title'      => __( 'Search','asu_s' ),
+        'title'      => esc_html__( 'Search','asu_s' ),
         'priority'   => 40,
       )
   );
@@ -481,7 +481,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_asu_gsa',
       array(
-        'label'      => __( 'ASU Header Search Box', 'asu_s' ),
+        'label'      => esc_html__( 'ASU Header Search Box', 'asu_s' ),
         'section'    => 'asu_s_section_search',
         'settings'   => 'asu_s_options[header_search]',
 		'type'    => 'checkbox',
@@ -495,9 +495,9 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_section(
       'asu_s_section_layout',
       array(
-        'title'      => __( 'Layout','asu_s' ),
+        'title'      => esc_html__( 'Layout','asu_s' ),
         'priority'   => 40,
-        'description' => __( "Allows you to edit your theme's layout.", 'narga' )
+        'description' => esc_html__( "Allows you to edit your theme's layout.", 'narga' )
       )
   );
   //  =============================
@@ -515,7 +515,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_sidebar_layout',
       array(
-        'label'      => __( 'Sidebar Layout', 'asu_s' ),
+        'label'      => esc_html__( 'Sidebar Layout', 'asu_s' ),
         'section'    => 'asu_s_section_layout',
         'settings'   => 'asu_s_options[sidebar_layout]',
 		'type'    => 'radio',
@@ -536,7 +536,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_fixed_width',
       array(
-        'label'      => __( 'Fixed Width Page Display', 'asu_s' ),
+        'label'      => esc_html__( 'Fixed Width Page Display', 'asu_s' ),
         'section'    => 'asu_s_section_layout',
         'settings'   => 'asu_s_options[fixed_width]',
 		'type'    => 'checkbox',
@@ -628,35 +628,35 @@ function asu_s_sanitize_phone( $data ) {
 function asu_get_campus_addresses() {
 	return apply_filters( 'asu_campus_addresses', array(
 		'default' => array(
-			'label'  => __( '', 'asu_s' ),
+			'label'  => esc_html__( '', 'asu_s' ),
 			'address' => '',
 		),
 		'tempe' => array(
-			'label'  => __( 'Tempe', 'asu_s' ),
+			'label'  => esc_html__( 'Tempe', 'asu_s' ),
 			'address' => 'Arizona State University - Tempe campus<br/>1151 S. Forest Ave.<br/>Tempe, AZ 85287 USA',
 		),
 		'polytechnic' => array(
-			'label'  => __( 'Polytechnic', 'asu_s' ),
+			'label'  => esc_html__( 'Polytechnic', 'asu_s' ),
 			'address' => 'Arizona State University - Polytechnic campus<br/>Power Road and Williams Field Road<br/>7001 E. Williams Field Road<br/>Mesa, AZ 85212',
 		),
 		'downtown_phoenix' => array(
-			'label'  => __( 'Downtown Phoenix', 'asu_s' ),
+			'label'  => esc_html__( 'Downtown Phoenix', 'asu_s' ),
 			'address' => 'Arizona State University - Downtown Phoenix<br/>411 N. Central, Suite 520<br/>Phoenix, AZ 85004',
 		),
 		'west' => array(
-			'label'  => __( 'West', 'asu_s' ),
+			'label'  => esc_html__( 'West', 'asu_s' ),
 			'address' => 'Arizona State University - West campus<br/>4701 West Thunderbird Road<br/>PO Box 37100<br/>Phoenix, AZ 85069-7100',
 		),
 		'research_park' => array(
-			'label'  => __( 'Research Park', 'asu_s' ),
+			'label'  => esc_html__( 'Research Park', 'asu_s' ),
 			'address' => 'Arizona State University - Research Park<br/>8750 S Science Dr<br/>Tempe, AZ 85284',
 		),
 		'skysong' => array(
-			'label'  => __( 'Skysong', 'asu_s' ),
+			'label'  => esc_html__( 'Skysong', 'asu_s' ),
 			'address' => 'Arizona State University - SkySong<br/>1475 N. Scottsdale Rd, Suite 200<br/>Scottsdale, Arizona 85257-3538',
 		),
 		'lake_havasu' => array(
-			'label'  => __( 'Lake Havasu', 'asu_s' ),
+			'label'  => esc_html__( 'Lake Havasu', 'asu_s' ),
 			'address' => 'Arizona State University - Lake Havasu<br/>100 University Way<br/>Lake Havasu City, AZ 86403',
 		),
 	) );
@@ -729,11 +729,11 @@ endif;
 function asu_s_get_layout_schemes() {
 	return apply_filters( 'asu_s_layout_schemes', array(
 		'default' => array(
-			'label'  => __( 'None', 'asu_s' ),
+			'label'  => esc_html__( 'None', 'asu_s' ),
 			'css' => array(),
 		),
 		'content_sidebar'  => array(
-			'label'  => __( 'content-sidebar', 'asu_s' ),
+			'label'  => esc_html__( 'content-sidebar', 'asu_s' ),
 			'css' => array(
 				'.content-area' => array(
 					'float' => 'left',
@@ -755,7 +755,7 @@ function asu_s_get_layout_schemes() {
 			),
 		),
 		'sidebar_content'    => array(
-			'label'  => __( 'sidebar-content', 'asu_s' ),
+			'label'  => esc_html__( 'sidebar-content', 'asu_s' ),
 			'css' => array(
 				'.content-area' => array(
 					'float' => 'right',
