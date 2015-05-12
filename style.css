@@ -885,9 +885,9 @@ a:active {
 
 .widget-area {
 	background-color: #fff;
-	border-top: 8px solid #903;
-	margin-bottom: 24px;
-	padding: 30px;
+	border-top: .5em solid #903;
+	margin-bottom: .5em;
+	padding: 1em;
 	position: relative;
 }
 
@@ -1086,24 +1086,24 @@ object {
 
 .site-content, .site-info .asu-info {
 	min-height: 1px;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-top:24px;
+	padding-left: .5em;
+	padding-right: .5em;
+	margin-top: 1em;
 }
-.content-area {
-	float: right;
-	margin: 0 0 0 -20%;
-	width: 100%;
-	padding-left: 30px;
-}
-.site-main {
-	margin: 0 0 0 20%;
-}
-.site-content .widget-area {
-	float: left;
-	overflow: hidden;
-	width: 20%;
-}
+/*.content-area {*/
+	/*float: right;*/
+	/*margin: 0 0 0 -25%;*/
+	/*width: 100%;*/
+	/*padding-left: 1em;*/
+/*}*/
+/*.site-main {*/
+	/*margin: 0 0 0 25%;*/
+/*}*/
+/*.site-content .widget-area {*/
+	/*float: left;*/
+	/*overflow: hidden;*/
+	/*width: 25%;*/
+/*}*/
 @media screen and (max-width: 600px) {
 	.site-content {
 		min-height: 1px;
@@ -1219,9 +1219,5 @@ object {
 	#site-name-desktop {
         display: none;
 	}
-}
-.site {
-    margin: 0 auto;
-    max-width: 980px;
 }
 

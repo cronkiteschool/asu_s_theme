@@ -9,14 +9,15 @@
  * Custom theme manager.  Special settings for the theme
  * get defined here.
  */
-function wordpress_asu_s_customize_register( $wp_customize ) {
+function asu_s_customize_register( $wp_customize ) {
+
   //  =============================
   //  =============================
   //  = School Info Section       =
   //  =============================
   //  =============================
   $wp_customize->add_section(
-      'wordpress_asu_s_theme_section' ,
+      'asu_s_section_info' ,
       array(
         'title'      => __( 'School Information','asu_s' ),
         'priority'   => 30,
@@ -26,20 +27,20 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = School Logo               =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[logo]',
+      'asu_s_options[logo]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_logo_text',
+      'asu_s_logo_text',
       array(
         'label'      => __( 'School Logo Full URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[logo]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[logo]',
         'priority'   => 0,
       )
   );
@@ -47,7 +48,7 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Organization Text         =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[org]',
+      'asu_s_options[org]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
@@ -56,11 +57,11 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_org_text',
+      'asu_s_org_text',
       array(
         'label'      => __( 'Parent Organization', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[org]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[org]',
         'priority'   => 1,
       )
   );
@@ -68,20 +69,20 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Organization Link         =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[org_link]',
+      'asu_s_options[org_link]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_org_link',
+      'asu_s_org_link',
       array(
         'label'      => __( 'Parent Organization URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[org_link]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[org_link]',
         'priority'   => 10,
       )
   );
@@ -89,7 +90,7 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Campus                    =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[campus_name]',
+      'asu_s_options[campus_name]',
       array(
         'default'           => 'default',
 		'sanitize_callback' => 'asu_sanitize_campus_choices',
@@ -101,9 +102,9 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_campus_name',
       array(
-        'settings'   => 'wordpress_asu_s_theme_options[campus_name]',
+        'settings'   => 'asu_s_options[campus_name]',
         'label'      => __( 'Select Campus Name', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
+        'section'    => 'asu_s_section_info',
 		'type'    => 'select',
 		'choices'    => asu_get_campus_choices(),
 		'priority' => 20,
@@ -113,20 +114,20 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = School Address            =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[address]',
+      'asu_s_options[address]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_nothing',
+        'sanitize_callback' => 'asu_s_sanitize_nothing',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_address',
+      'asu_s_address',
       array(
         'label'      => __( 'School Address', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[address]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[address]',
         'type'       => 'textarea',
         'priority'   => 21,
       )
@@ -135,20 +136,20 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Phone                     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[phone]',
+      'asu_s_options[phone]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_phone',
+        'sanitize_callback' => 'asu_s_sanitize_phone',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_phone',
+      'asu_s_phone',
       array(
         'label'      => __( 'Phone Number', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[phone]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[phone]',
         'priority'   => 30,
       )
   );
@@ -156,20 +157,20 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Fax                       =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[fax]',
+      'asu_s_options[fax]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_phone',
+        'sanitize_callback' => 'asu_s_sanitize_phone',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_fax',
+      'asu_s_fax',
       array(
         'label'      => __( 'Fax Number', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[fax]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[fax]',
         'priority'   => 40,
       )
   );
@@ -177,20 +178,20 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Contact Us Email or URL   =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[contact]',
+      'asu_s_options[contact]',
       array(
         'default'        => '',
         'capability'     => 'edit_theme_options',
         'type'           => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_email_or_url',
+        'sanitize_callback' => 'asu_s_sanitize_email_or_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_contact',
+      'asu_s_contact',
       array(
         'label'      => __( 'Contact Us Email or URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[contact]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[contact]',
         'priority'   => 50,
       )
   );
@@ -198,7 +199,7 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Contact Us Email Subject  =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[contact_subject]',
+      'asu_s_options[contact_subject]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
@@ -207,11 +208,11 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_contact_subject',
+      'asu_s_contact_subject',
       array(
         'label'      => __( 'Contact Us Email Subject (Optional)', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[contact_subject]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[contact_subject]',
         'priority'   => 60,
       )
   );
@@ -219,20 +220,20 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Contact Us Email Body     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[contact_body]',
+      'asu_s_options[contact_body]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_nothing',
+        'sanitize_callback' => 'asu_s_sanitize_nothing',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_contact_body',
+      'asu_s_contact_body',
       array(
         'label'    => __( 'Contact Us Email Body (Optional)', 'asu_s' ),
-        'section'  => 'wordpress_asu_s_theme_section',
-        'settings' => 'wordpress_asu_s_theme_options[contact_body]',
+        'section'  => 'asu_s_section_info',
+        'settings' => 'asu_s_options[contact_body]',
         'type'     => 'textarea',
         'priority' => 70,
       )
@@ -241,20 +242,20 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Contribute URL            =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[contribute]',
+      'asu_s_options[contribute]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_contribute',
+      'asu_s_contribute',
       array(
         'label'      => __( 'Contribute URL (Optional)', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section',
-        'settings'   => 'wordpress_asu_s_theme_options[contribute]',
+        'section'    => 'asu_s_section_info',
+        'settings'   => 'asu_s_options[contribute]',
         'priority'   => 80,
       )
   );
@@ -264,7 +265,7 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  =============================
   //  =============================
   $wp_customize->add_section(
-      'wordpress_asu_s_theme_section_social',
+      'asu_s_section_social',
       array(
         'title'      => __( 'Social Media','asu_s' ),
         'priority'   => 31,
@@ -274,180 +275,180 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = Facebook                  =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[facebook]',
+      'asu_s_options[facebook]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_facebook',
+      'asu_s_facebook',
       array(
         'label'      => __( 'Facebook URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[facebook]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[facebook]',
       )
   );
   //  =============================
   //  = Twitter                   =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[twitter]',
+      'asu_s_options[twitter]',
       array(
         'default'        => '',
         'capability'     => 'edit_theme_options',
         'type'           => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_twitter',
+      'asu_s_twitter',
       array(
         'label'      => __( 'Twitter URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[twitter]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[twitter]',
       )
   );
   //  =============================
   //  = Google+                   =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[google_plus]',
+      'asu_s_options[google_plus]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_google_plus',
+      'asu_s_google_plus',
       array(
         'label'      => __( 'Google Plus URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[google_plus]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[google_plus]',
       )
   );
   //  =============================
   //  = LinkedIn                  =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[linkedin]',
+      'asu_s_options[linkedin]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_linkedin',
+      'asu_s_linkedin',
       array(
         'label'      => __( 'Linked In URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[linkedin]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[linkedin]',
       )
   );
   //  =============================
   //  = Youtube                   =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[youtube]',
+      'asu_s_options[youtube]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_youtube',
+      'asu_s_youtube',
       array(
         'label'      => __( 'Youtube URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[youtube]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[youtube]',
       )
   );
   //  =============================
   //  = Vimeo                     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[vimeo]',
+      'asu_s_options[vimeo]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_vimeo',
+      'asu_s_vimeo',
       array(
         'label'      => __( 'Vimeo URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[vimeo]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[vimeo]',
       )
   );
   //  =============================
   //  = Instagram                 =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[instagram]',
+      'asu_s_options[instagram]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_instagram',
+      'asu_s_instagram',
       array(
         'label'      => __( 'Instagram URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[instagram]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[instagram]',
       )
   );
   //  =============================
   //  = Fickr                     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[flickr]',
+      'asu_s_options[flickr]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_flickr',
+      'asu_s_flickr',
       array(
         'label'      => __( 'Flickr URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[flickr]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[flickr]',
       )
   );
   //  =============================
   //  = RSS                 =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[rss]',
+      'asu_s_options[rss]',
       array(
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'wordpress_asu_s_sanitize_url',
+        'sanitize_callback' => 'asu_s_sanitize_url',
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_rss',
+      'asu_s_rss',
       array(
         'label'      => __( 'RSS URL', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_social',
-        'settings'   => 'wordpress_asu_s_theme_options[rss]',
+        'section'    => 'asu_s_section_social',
+        'settings'   => 'asu_s_options[rss]',
       )
   );
   //  =============================
@@ -456,7 +457,7 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  =============================
   //  =============================
   $wp_customize->add_section(
-      'wordpress_asu_s_theme_section_search',
+      'asu_s_section_search',
       array(
         'title'      => __( 'Search','asu_s' ),
         'priority'   => 40,
@@ -466,7 +467,7 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
   //  = ASU Google Search App     =
   //  =============================
   $wp_customize->add_setting(
-      'wordpress_asu_s_theme_options[header_search]',
+      'asu_s_options[header_search]',
       array(
         'default'           => '1',
         'capability'        => 'edit_theme_options',
@@ -474,24 +475,15 @@ function wordpress_asu_s_customize_register( $wp_customize ) {
       )
   );
   $wp_customize->add_control(
-      'wordpress_asu_s_asu_gsa',
+      'asu_s_asu_gsa',
       array(
         'label'      => __( 'ASU Header Search Box', 'asu_s' ),
-        'section'    => 'wordpress_asu_s_theme_section_search',
-        'settings'   => 'wordpress_asu_s_theme_options[header_search]',
+        'section'    => 'asu_s_section_search',
+        'settings'   => 'asu_s_options[header_search]',
 		'type'    => 'checkbox',
       )
   );
-}
-add_action( 'customize_register', 'wordpress_asu_s_customize_register' );
 
-
-/**
- * Add postMessage support for site title and description for the Theme Customizer.
- *
- * @param WP_Customize_Manager $wp_customize Theme Customizer object.
- */
-function asu_s_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -510,43 +502,43 @@ add_action( 'customize_preview_init', 'asu_s_customize_preview_js' );
  * Returns the options array for asu_s
  */
 function asu_s_options($name, $default = false) {
-    $options = ( get_option( 'wordpress_asu_s_theme_options' ) ) ? get_option( 'wordpress_asu_s_theme_options' ) : null;
+    $options = ( get_option( 'asu_s_options' ) ) ? get_option( 'asu_s_options' ) : null;
     // return the option if it exists
     if ( isset( $options[ $name ] ) ) {
-        return apply_filters( 'wordpress_asu_s_theme_options$name', $options[ $name ] );
+        return apply_filters( 'asu_s_options$name', $options[ $name ] );
     }
     // return default if nothing else
-    return apply_filters( 'wordpress_asu_s_theme_options_$name', $default );
+    return apply_filters( 'asu_s_options_$name', $default );
 }
 
 /**
  * Sanitizer that does nothing
  */
-function wordpress_asu_s_sanitize_nothing( $data ) {
+function asu_s_sanitize_nothing( $data ) {
   return $data;
 }
 /**
  * Sanitizer that checks if the data is an url
  */
-function wordpress_asu_s_sanitize_url( $data ) {
+function asu_s_sanitize_url( $data ) {
   $protocols = array('http', 'https');
   return esc_url( $data, $protocols );
 }
 /**
  * Sanitizer that checks if the data is an email or url
  */
-function wordpress_asu_s_sanitize_email_or_url( $data ) {
+function asu_s_sanitize_email_or_url( $data ) {
   if (is_email( $data )) {
     // Matches email, return data.
     return sanitize_email( $data );
   } else {
-	  return wordpress_asu_s_sanitize_url( $data );
+	  return asu_s_sanitize_url( $data );
   }
 }
 /**
  * Sanitizer that checks if the data is a phone number
  */
-function wordpress_asu_s_sanitize_phone( $data ) {
+function asu_s_sanitize_phone( $data ) {
   $reg = '/^[+]?([\d]{0,3})?[\(\.\-\s]?([\d]{3})[\)\.\-\s]*([\d]{3})[\.\-\s]?([\d]{4})$/';
   if (preg_match($reg, $data)) { 
     return $data;
