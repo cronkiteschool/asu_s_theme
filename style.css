@@ -592,7 +592,8 @@ a:active {
 .main-navigation ul ul .focus > a {
 }
 
-.main-navigation ul ul a:hover {
+.main-navigation ul ul a:hover,
+.main-navigation ul ul a.focus {
 	background-color: black;
 	color: #fff;
 }
