@@ -13,7 +13,8 @@ Tags:
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-asu_s is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+_s is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
@@ -35,9 +36,9 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 # Clearings
 # Widgets
 # Content
-	## Posts and pages
+    ## Posts and pages
 	## Asides
-	# Comments
+	## Comments
 # Infinite scroll
 # Media
 	## Captions
@@ -271,8 +272,7 @@ button,
 input,
 select,
 textarea {
-	color: #2a2a2a;
-	font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #404040;
 	font-size: 16px;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -285,9 +285,6 @@ h4,
 h5,
 h6 {
 	clear: both;
-	color: black;
-	font-family: inherit;
-	font-weight: normal;
 }
 
 p {
@@ -306,13 +303,7 @@ blockquote {
 }
 
 address {
-  font-weight: 200;
-  line-height: 1.44;
-  margin: 0 0 1.5em;
-}
-
-address strong {
-  font-weight: normal;
+	margin: 0 0 1.5em;
 }
 
 pre {
@@ -509,6 +500,10 @@ a {
 	font-weight: normal;
 }
 
+a:visited {
+	color: purple;
+}
+
 a:hover,
 a:focus,
 a:active {
@@ -571,6 +566,7 @@ a:active {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	float: left;
 	position: absolute;
+	top: 1.5em;
 	left: -999em;
 	z-index: 99999;
 }
@@ -588,10 +584,12 @@ a:active {
 
 }
 
-.main-navigation li:hover > a {
+.main-navigation li:hover > a,
+.main-navigation li.focus > a {
 }
 
-.main-navigation ul ul :hover > a {
+.main-navigation ul ul :hover > a,
+.main-navigation ul ul .focus > a {
 }
 
 .main-navigation ul ul a:hover {
@@ -599,11 +597,13 @@ a:active {
 	color: #fff;
 }
 
-.main-navigation ul li:hover > ul {
+.main-navigation ul li:hover > ul,
+.main-navigation ul li.focus > ul {
 	left: auto;
 }
 
-.main-navigation ul ul li:hover > ul {
+.main-navigation ul ul li:hover > ul,
+.main-navigation ul ul li.focus > ul {
 	left: 100%;
 }
 

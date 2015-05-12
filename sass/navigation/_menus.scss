@@ -52,7 +52,8 @@
 		float: left;
 		position: relative;
 
-		&:hover > a {
+		&:hover > a,
+		&.focus > a {
 		}
 	}
 	a {
