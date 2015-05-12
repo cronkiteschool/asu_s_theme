@@ -1,10 +1,11 @@
 /**
  * navigation.js
  *
- * Handles toggling the navigation menu for small screens.
+ * Handles toggling the navigation menu for small screens and enables tab
+ * support for dropdown menus.
  */
 ( function() {
-	var container, button, menu;
+	var container, button, menu, links, subMenus;
 
 	container = document.getElementById( 'site-navigation' );
 	if ( ! container ) {
@@ -25,7 +26,6 @@
 	}
 
 	menu.setAttribute( 'aria-expanded', 'false' );
-
 	if ( -1 === menu.className.indexOf( 'nav-menu' ) ) {
 		menu.className += ' nav-menu';
 	}
