@@ -3,6 +3,10 @@
  * asu_s Theme Customizer
  *
  * @package asu_s
+ * 
+ * I've used the following sources as insperation for these functions.
+ * - https://github.com/gios-asu/ASU-Web-Standards-Wordpress-Theme/blob/master/inc/customizer.php
+ * - https://themes.svn.wordpress.org/twentyfifteen/1.2/inc/customizer.php
  */
 
 /**
@@ -94,7 +98,7 @@ function asu_s_customize_register( $wp_customize ) {
       array(
         'default'           => 'default',
 		'sanitize_callback' => 'asu_sanitize_campus_choices',
-		'transport'         => 'postMessage',
+// 		'transport'         => 'postMessage',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
       )
@@ -483,12 +487,73 @@ function asu_s_customize_register( $wp_customize ) {
 		'type'    => 'checkbox',
       )
   );
+  //  =============================
+  //  =============================
+  //  = Layout options            =
+  //  =============================
+  //  =============================
+  $wp_customize->add_section(
+      'asu_s_section_layout',
+      array(
+        'title'      => __( 'Layout','asu_s' ),
+        'priority'   => 40,
+        'description' => __( "Allows you to edit your theme's layout.", 'narga' )
+      )
+  );
+  //  =============================
+  //  = Sidebar Layout        =
+  //  =============================
+  $wp_customize->add_setting(
+      'asu_s_options[sidebar_layout]',
+      array(
+        'default'           => 'default',
+        'capability'        => 'edit_theme_options',
+		'type'              => 'option',
+		'sanitize_callback' => 'asu_s_sanitize_layout_scheme',
+      )
+  );
+  $wp_customize->add_control(
+      'asu_s_sidebar_layout',
+      array(
+        'label'      => __( 'Sidebar Layout', 'asu_s' ),
+        'section'    => 'asu_s_section_layout',
+        'settings'   => 'asu_s_options[sidebar_layout]',
+		'type'    => 'radio',
+		'choices'    => asu_s_get_layout_scheme_choices(),
+      )
+  );
+  //  =============================
+  //  = Fixed Width Layout        =
+  //  =============================
+  $wp_customize->add_setting(
+      'asu_s_options[fixed_width]',
+      array(
+        'default'           => FALSE,
+        'capability'        => 'edit_theme_options',
+        'type'              => 'option',
+      )
+  );
+  $wp_customize->add_control(
+      'asu_s_fixed_width',
+      array(
+        'label'      => __( 'Fixed Width Page Display', 'asu_s' ),
+        'section'    => 'asu_s_section_layout',
+        'settings'   => 'asu_s_options[fixed_width]',
+		'type'    => 'checkbox',
+      )
+  );
+  /**
+   * Add postMessage support for site title and description for the Theme Customizer.
+   *
+   * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+  */
 
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 }
 add_action( 'customize_register', 'asu_s_customize_register' );
+
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
@@ -497,6 +562,7 @@ function asu_s_customize_preview_js() {
 	wp_enqueue_script( 'asu_s_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20130508', true );
 }
 add_action( 'customize_preview_init', 'asu_s_customize_preview_js' );
+
 
 /**
  * Returns the options array for asu_s
@@ -510,6 +576,7 @@ function asu_s_options($name, $default = false) {
     // return default if nothing else
     return apply_filters( 'asu_s_options_$name', $default );
 }
+
 
 /**
  * Sanitizer that does nothing
@@ -546,6 +613,7 @@ function asu_s_sanitize_phone( $data ) {
     return FALSE;
   }
 }
+
 
 /**
  * Register Campus Addresses for ASU Theme.
@@ -646,5 +714,184 @@ function asu_sanitize_campus_choices( $value ) {
 	}
 	return $value;
 }
-endif; // asu_sanitize_campus_choices
+endif;
 
+
+/**
+ * Register layout schemes for ASU _s theme.
+ *
+ * Can be filtered with {@see 'asu_s_layout_schemes'}.
+ *
+ * @since asu_s 1.0
+ *
+ * @return array An associative array of layout scheme options.
+ */
+function asu_s_get_layout_schemes() {
+	return apply_filters( 'asu_s_layout_schemes', array(
+		'default' => array(
+			'label'  => __( 'None', 'asu_s' ),
+			'css' => array(),
+		),
+		'content_sidebar'  => array(
+			'label'  => __( 'content-sidebar', 'asu_s' ),
+			'css' => array(
+				'.content-area' => array(
+					'float' => 'left',
+					'margin' => '0 -25% 0 0',
+					'width' => '100%',
+				),
+				'.site-main' => array(
+					'margin' => '0 25% 0 0',
+				),
+				'.site-content .widget-area' => array(
+					'float' => 'right',
+					'overflow' => 'hidden',
+					'width' => '25%',
+				),
+				'.site-footer' => array(
+					'clear' => 'both',
+					'width' => '100%',
+				),
+			),
+		),
+		'sidebar_content'    => array(
+			'label'  => __( 'sidebar-content', 'asu_s' ),
+			'css' => array(
+				'.content-area' => array(
+					'float' => 'right',
+					'margin' => '0 0 0 -25%',
+					'width' => '100%',
+				),
+				'.site-main' => array(
+					'margin' => '0 0 0 25%',
+				),
+				'.site-content .widget-area' => array(
+					'float' => 'left',
+					'overflow' => 'hidden',
+					'width' => '25%',
+				),
+				'.site-footer' => array(
+					'clear' => 'both',
+					'width' => '100%',
+				),
+			),
+		),
+	) );
+}
+if ( ! function_exists( 'asu_s_get_layout_scheme' ) ) :
+/**
+ * Get the current asu_s layout scheme.
+ *
+ * @since asu_s 1.0
+ *
+ * @return array An associative array of either the current or default layout scheme css values.
+ */
+function asu_s_get_layout_scheme() {
+	$layout_scheme_option = asu_s_options( 'sidebar_layout' );
+	$layout_schemes       = asu_s_get_layout_schemes();
+
+	if ( array_key_exists( $layout_scheme_option, $layout_schemes ) ) {
+		return $layout_schemes[ $layout_scheme_option ]['css'];
+	}
+
+	return $layout_schemes['default']['css'];
+}
+endif; // asu_s_get_layout_scheme
+if ( ! function_exists( 'asu_s_get_layout_scheme_choices' ) ) :
+/**
+ * Returns an array of layout scheme choices registered for asu_s.
+ *
+ * @since asu_s 1.0
+ *
+ * @return array Array of layout schemes.
+ */
+function asu_s_get_layout_scheme_choices() {
+	$layout_schemes                = asu_s_get_layout_schemes();
+	$layout_scheme_control_options = array();
+
+	foreach ( $layout_schemes as $layout_scheme => $value ) {
+		$layout_scheme_control_options[ $layout_scheme ] = $value['label'];
+	}
+
+	return $layout_scheme_control_options;
+}
+endif; // asu_s_get_layout_scheme_choices
+if ( ! function_exists( 'asu_s_sanitize_layout_scheme' ) ) :
+/**
+ * Sanitization callback for layout schemes.
+ *
+ * @since asu_s 1.0
+ *
+ * @param string $value Layout scheme name value.
+ * @return string Layout scheme name.
+ */
+function asu_s_sanitize_layout_scheme( $value ) {
+	$layout_schemes = asu_s_get_layout_scheme_choices();
+
+	if ( ! array_key_exists( $value, $layout_schemes ) ) {
+		$value = 'default';
+	}
+
+	return $value;
+}
+endif; // asu_s_sanitize_layout_scheme
+/**
+ * Returns CSS for the layout schemes.
+ *
+ * @since asu_s 1.0
+ *
+ * @param array $layouts Layout scheme layouts.
+ * @return string Layout scheme CSS.
+ */
+function asu_s_get_layout_scheme_css( $layout ) {
+	$layout = wp_parse_args( $layout, array() );
+
+	$css[] = "/* Layout Scheme */";
+	
+	foreach ($layout as $selector => $css_properties) {
+	  if( empty($css_properties) ) { continue; }
+	  $css[] = "$selector {";
+	  foreach ($css_properties as $property => $value) {
+	    $css[] = "  $property: $value;";
+	  }
+	$css[] = '}';
+	}
+	$css[] = "\n";
+	return  join("\n",$css);
+}
+// asu_s_fixed_width
+/**
+ * Output custom CSS for fixed width layout
+ * @package asu_s
+ */
+function asu_s_fixed_width() {
+	$css = array();
+	$fixed_width_option = asu_s_options( 'fixed_width' );
+	if ( $fixed_width_option == 1 ) {
+		$css['.site'] = array(
+			'margin' => '0 auto',
+			'max-width' => '980px',
+		);
+	}
+	if( !empty( $css ) )
+		return $css;
+}
+
+/**
+ * Enqueues front-end CSS for layout scheme.
+ *
+ * @since asu_s 1.0
+ *
+ * @see wp_add_inline_style()
+ */
+function asu_s_customize_css() {
+	$layout_scheme = asu_s_get_layout_scheme();
+	$fixed_width = asu_s_fixed_width();
+	$custom_layout = array_merge($layout_scheme, $fixed_width);
+
+	$css = asu_s_get_layout_scheme_css( $custom_layout );
+	if( !empty( $css ) )
+		wp_add_inline_style( 'asu_s-style', $css );
+
+}
+add_action( 'wp_enqueue_scripts', 'asu_s_customize_css' );
