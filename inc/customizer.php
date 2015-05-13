@@ -806,7 +806,7 @@ if ( ! function_exists( 'asu_s_get_layout_scheme' ) ) :
  * @return array An associative array of either the current or default layout scheme css values.
  */
 function asu_s_get_layout_scheme() {
-	$layout_scheme_option = asu_s_options( 'sidebar_layout' );
+	$layout_scheme_option = asu_s_options( 'sidebar_layout', 'default' );
 	$layout_schemes       = asu_s_get_layout_schemes();
 
 	if ( array_key_exists( $layout_scheme_option, $layout_schemes ) ) {
