@@ -12,8 +12,16 @@
 /**
  * Custom theme manager.  Special settings for the theme
  * get defined here.
+ *
+ * Add postMessage support for site title and description for the Theme Customizer.
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
 function asu_s_customize_register( $wp_customize ) {
+
+	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
+	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
+	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
   //  =============================
   //  =============================
@@ -542,15 +550,7 @@ function asu_s_customize_register( $wp_customize ) {
 		'type'    => 'checkbox',
       )
   );
-  /**
-   * Add postMessage support for site title and description for the Theme Customizer.
-   *
-   * @param WP_Customize_Manager $wp_customize Theme Customizer object.
-  */
 
-	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 }
 add_action( 'customize_register', 'asu_s_customize_register' );
 
@@ -737,20 +737,29 @@ function asu_s_get_layout_schemes() {
 			'css' => array(
 				'.content-area' => array(
 					'float' => 'left',
-					'margin' => '0 -25% 0 0',
 					'width' => '100%',
 				),
 				'.site-main' => array(
-					'margin' => '0 25% 0 0',
 				),
 				'.site-content .widget-area' => array(
 					'float' => 'right',
 					'overflow' => 'hidden',
-					'width' => '25%',
 				),
 				'.site-footer' => array(
 					'clear' => 'both',
 					'width' => '100%',
+				),
+				'@media screen and (min-width: 37.5em)' => array(
+					'.content-area' => array(
+						'margin' => '0 -25% 0 0',
+						'padding-right' => '1em',
+					),
+					'.site-main' => array(
+						'margin' => '0 25% 0 0',
+					),
+					'.site-content .widget-area' => array(
+						'width' => '25%',
+					),
 				),
 			),
 		),
@@ -759,25 +768,35 @@ function asu_s_get_layout_schemes() {
 			'css' => array(
 				'.content-area' => array(
 					'float' => 'right',
-					'margin' => '0 0 0 -25%',
 					'width' => '100%',
 				),
 				'.site-main' => array(
-					'margin' => '0 0 0 25%',
 				),
 				'.site-content .widget-area' => array(
 					'float' => 'left',
 					'overflow' => 'hidden',
-					'width' => '25%',
 				),
 				'.site-footer' => array(
 					'clear' => 'both',
 					'width' => '100%',
 				),
+				'@media screen and (min-width: 37.5em)' => array(
+					'.content-area' => array(
+						'margin' => '0 0 0 -25%',
+						'padding-left' => '1em',
+					),
+					'.site-main' => array(
+						'margin' => '0 0 0 25%',
+					),
+					'.site-content .widget-area' => array(
+						'width' => '25%',
+					),
+				),
 			),
 		),
 	) );
 }
+
 if ( ! function_exists( 'asu_s_get_layout_scheme' ) ) :
 /**
  * Get the current asu_s layout scheme.
@@ -797,6 +816,7 @@ function asu_s_get_layout_scheme() {
 	return $layout_schemes['default']['css'];
 }
 endif; // asu_s_get_layout_scheme
+
 if ( ! function_exists( 'asu_s_get_layout_scheme_choices' ) ) :
 /**
  * Returns an array of layout scheme choices registered for asu_s.
@@ -816,6 +836,7 @@ function asu_s_get_layout_scheme_choices() {
 	return $layout_scheme_control_options;
 }
 endif; // asu_s_get_layout_scheme_choices
+
 if ( ! function_exists( 'asu_s_sanitize_layout_scheme' ) ) :
 /**
  * Sanitization callback for layout schemes.
@@ -835,30 +856,31 @@ function asu_s_sanitize_layout_scheme( $value ) {
 	return $value;
 }
 endif; // asu_s_sanitize_layout_scheme
+
 /**
  * Returns CSS for the layout schemes.
  *
  * @since asu_s 1.0
  *
- * @param array $layouts Layout scheme layouts.
- * @return string Layout scheme CSS.
+ * @param nested arrays of layout layout scheme keys and values.
+ * @return string layout scheme CSS.
  */
-function asu_s_get_layout_scheme_css( $layout ) {
+function asu_s_get_css( $layout ) {
 	$layout = wp_parse_args( $layout, array() );
 
-	$css[] = "/* Layout Scheme */";
-	
-	foreach ($layout as $selector => $css_properties) {
-	  if( empty($css_properties) ) { continue; }
-	  $css[] = "$selector {";
-	  foreach ($css_properties as $property => $value) {
-	    $css[] = "  $property: $value;";
-	  }
-	$css[] = '}';
+	$Output = '';
+	foreach($layout as $Key => $Value){
+		if(is_array($Value)){
+			$Output .= "{$Key} {\n";
+			$Output .= asu_s_get_css($Value);
+			$Output .= "}\n";
+		}else{
+			$Output .= "{$Key}: {$Value};\n";
+		}
 	}
-	$css[] = "\n";
-	return  join("\n",$css);
+	return $Output;
 }
+
 // asu_s_fixed_width
 /**
  * Output custom CSS for fixed width layout
@@ -887,9 +909,12 @@ function asu_s_fixed_width() {
 function asu_s_customize_css() {
 	$layout_scheme = asu_s_get_layout_scheme();
 	$fixed_width = asu_s_fixed_width();
-	$custom_layout = array_merge($layout_scheme, $fixed_width);
 
-	$css = asu_s_get_layout_scheme_css( $custom_layout );
+	$css = "/* Layout Scheme */\n";
+	
+	$css .= asu_s_get_css( $layout_scheme );
+	$css .= asu_s_get_css( $fixed_width );
+
 	if( !empty( $css ) )
 		wp_add_inline_style( 'asu_s-style', $css );
 

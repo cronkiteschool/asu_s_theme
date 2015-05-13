@@ -47,7 +47,7 @@ $home_url  = esc_url( home_url( '/' ) );
 		<!-- .asu_header -->
 
 		<div class="site-branding">
-			<div id="site-name-desktop" class="section site-name-desktop">
+			<div id="site-name-screen" class="section site-name-screen">
 				<h1 class="site-title" id="asu_school_name">
 				  <?php
 					// Print the parent organization and its link
