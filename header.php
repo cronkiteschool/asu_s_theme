@@ -28,7 +28,7 @@ $home_url  = esc_url( home_url( '/' ) );
 <?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/gtm.shtml'); ?><!-- ASU Google Tag Manager -->
 
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'asu' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'asu' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
 		<div id="asu_header">
@@ -47,7 +47,7 @@ $home_url  = esc_url( home_url( '/' ) );
 		<!-- .asu_header -->
 
 		<div class="site-branding">
-			<div id="site-name-desktop" class="section site-name-desktop">
+			<div id="site-name-screen" class="section site-name-screen">
 				<h1 class="site-title" id="asu_school_name">
 				  <?php
 					// Print the parent organization and its link
