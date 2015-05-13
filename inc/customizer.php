@@ -718,7 +718,7 @@ endif;
 
 
 /**
- * Register layout schemes for ASU _s theme.
+ * Register sidebar layout schemes for ASU _s theme.
  *
  * Can be filtered with {@see 'asu_s_layout_schemes'}.
  *
