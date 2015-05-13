@@ -209,6 +209,17 @@
 					$instagram = '<li><a href="%1$s" title="Instagram" id="instagram-link-in-footer"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';
 					echo wp_kses( sprintf( $instagram, $instagram_option ), wp_kses_allowed_html( 'post' ) );
 				  }
+	
+				  //  =============================
+              //  = Flickr                    =
+              //  =============================
+              // Do we have a flickr?
+              $flickr_option = asu_s_options( 'flickr' );
+				  if ( $flickr_option &&
+						 $flickr_option !== '' ) {
+              		$flickr = '<li><a href="%1$s" title="Flickr" id="flickr-link-in-footer"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>';
+                echo wp_kses( sprintf( $flickr, $flickr_option ), wp_kses_allowed_html( 'post' ) );
+              }
 
 				  //  =============================
 				  //  = RSS                       =
