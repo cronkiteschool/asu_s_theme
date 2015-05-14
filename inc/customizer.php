@@ -589,7 +589,7 @@ function asu_s_sanitize_nothing( $data ) {
  */
 function asu_s_sanitize_url( $data ) {
   $protocols = array('http', 'https');
-  return esc_url( $data, $protocols );
+  return esc_url_raw( $data, $protocols );
 }
 /**
  * Sanitizer that checks if the data is an email or url
