@@ -19,7 +19,7 @@
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				esc_html__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'asu_s' ),
+				esc_html__( 'Continue reading %s ', 'asu_s' ) . '<span class="meta-nav"><i class="fa fa-caret-right"></i></span>',
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			) );
 		?>
