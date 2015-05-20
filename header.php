@@ -85,7 +85,7 @@ $home_url  = esc_url( home_url( '/' ) );
 					$wrapper  = '<ul id="%1$s" class="%2$s">';
 					$wrapper .= '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">';
 					$wrapper .= "<a href=\"$home_url\" title=\"Home\"  id=\"home-icon-main-nav\">";
-					$wrapper .= '<span class="fa fa-home menu-home-icon" aria-hidden="true"></span><span class="menu-home-text">Home</span>';
+					$wrapper .= '<span class="fa fa-home fa-fw menu-home-icon" aria-hidden="true"></span><span class="menu-home-text">Home</span>';
 					$wrapper .= '</a>';
 					$wrapper .= '</li>';
 					$wrapper .= '%3$s';
