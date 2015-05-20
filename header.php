@@ -17,9 +17,6 @@ $home_url  = esc_url( home_url( '/' ) );
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
 <?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/heads/default.shtml'); ?><!-- ASU Header -->
 <?php wp_head(); ?>
 </head>
