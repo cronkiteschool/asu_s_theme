@@ -886,6 +886,7 @@ a:active {
 }
 
 .entry-footer span {
+    font-size: .8em;
 	margin: 0 5px 0 0;
 }
 
