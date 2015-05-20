@@ -131,7 +131,7 @@ function asu_s_customize_register( $wp_customize ) {
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'asu_s_sanitize_nothing',
+        'sanitize_callback' => 'asu_s_sanitize_textarea',
       )
   );
   $wp_customize->add_control(
@@ -237,7 +237,7 @@ function asu_s_customize_register( $wp_customize ) {
         'default'           => '',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
-        'sanitize_callback' => 'asu_s_sanitize_nothing',
+        'sanitize_callback' => 'asu_s_sanitize_textarea',
       )
   );
   $wp_customize->add_control(
@@ -580,12 +580,33 @@ function asu_s_options($name, $default = false) {
 
 /**
  * Sanitizer that does nothing
+ *
+ * @since  asu_s 1.0.
+ *
+ * @param    $data    The unsanitized data.
+ * @return   $data    The unsanitized data.
  */
 function asu_s_sanitize_nothing( $data ) {
   return $data;
 }
 /**
+ * Sanitize text to allow only tags.
+ *
+ * @since  asu_s 1.0.
+ *
+ * @param  string    $data      The unsanitized string.
+ * @return string               The sanitized string.
+ */
+function asu_s_sanitize_textarea( $data ) {
+	return wp_kses_post( force_balance_tags( $data ) );
+}
+/**
  * Sanitizer that checks if the data is an url
+ *
+ * @since  asu_s 1.0.
+ *
+ * @param    $data    The unsanitized url.
+ * @return   $data    The sanitized url or false if not valide url.
  */
 function asu_s_sanitize_url( $data ) {
   $protocols = array('http', 'https');
@@ -593,6 +614,11 @@ function asu_s_sanitize_url( $data ) {
 }
 /**
  * Sanitizer that checks if the data is an email or url
+ *
+ * @since  asu_s 1.0.
+ *
+ * @param    $data    The unsanitized url or email.
+ * @return   $data    The sanitized input or false if not valide url or email.
  */
 function asu_s_sanitize_email_or_url( $data ) {
   if (is_email( $data )) {
@@ -604,6 +630,11 @@ function asu_s_sanitize_email_or_url( $data ) {
 }
 /**
  * Sanitizer that checks if the data is a phone number
+ *
+ * @since  asu_s 1.0.
+ *
+ * @param    $data    The unsanitized phone number.
+ * @return   $data    The sanitized phone number or false if not valide url.
  */
 function asu_s_sanitize_phone( $data ) {
   $reg = '/^[+]?([\d]{0,3})?[\(\.\-\s]?([\d]{3})[\)\.\-\s]*([\d]{3})[\.\-\s]?([\d]{4})$/';
@@ -732,8 +763,8 @@ function asu_s_get_layout_schemes() {
 			'label'  => esc_html__( 'None', 'asu_s' ),
 			'css' => array(),
 		),
-		'content_sidebar'  => array(
-			'label'  => esc_html__( 'content-sidebar', 'asu_s' ),
+		'content-sidebar'  => array(
+			'label'  => esc_html__( 'Content on left', 'asu_s' ),
 			'css' => array(
 				'.content-area' => array(
 					'float' => 'left',
@@ -763,8 +794,8 @@ function asu_s_get_layout_schemes() {
 				),
 			),
 		),
-		'sidebar_content'    => array(
-			'label'  => esc_html__( 'sidebar-content', 'asu_s' ),
+		'sidebar-content'    => array(
+			'label'  => esc_html__( 'Content on right', 'asu_s' ),
 			'css' => array(
 				'.content-area' => array(
 					'float' => 'right',
@@ -865,14 +896,14 @@ endif; // asu_s_sanitize_layout_scheme
  * @param nested arrays of layout layout scheme keys and values.
  * @return string layout scheme CSS.
  */
-function asu_s_get_css( $layout ) {
+function asu_s_array_to_css( $layout ) {
 	$layout = wp_parse_args( $layout, array() );
 
 	$Output = '';
 	foreach($layout as $Key => $Value){
 		if(is_array($Value)){
 			$Output .= "{$Key} {\n";
-			$Output .= asu_s_get_css($Value);
+			$Output .= asu_s_array_to_css($Value);
 			$Output .= "}\n";
 		}else{
 			$Output .= "{$Key}: {$Value};\n";
@@ -912,8 +943,8 @@ function asu_s_customize_css() {
 
 	$css = "/* Layout Scheme */\n";
 	
-	$css .= asu_s_get_css( $layout_scheme );
-	$css .= asu_s_get_css( $fixed_width );
+	$css .= asu_s_array_to_css( $layout_scheme );
+	$css .= asu_s_array_to_css( $fixed_width );
 
 	if( !empty( $css ) )
 		wp_add_inline_style( 'asu_s-style', $css );
