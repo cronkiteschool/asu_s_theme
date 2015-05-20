@@ -550,6 +550,26 @@ function asu_s_customize_register( $wp_customize ) {
 		'type'    => 'checkbox',
       )
   );
+  //  =============================
+  //  = Posted on Format          =
+  //  =============================
+  $wp_customize->add_setting(
+      'asu_s_options[date_posted]',
+      array(
+        'default'           => '',
+        'capability'        => 'edit_theme_options',
+        'type'              => 'option',
+        'sanitize_callback' => 'sanitize_text_field',
+      )
+  );
+  $wp_customize->add_control(
+      'asu_s_date_posted',
+      array(
+        'label'      => esc_html__( 'Posted Date Format', 'asu_s' ),
+        'section'    => 'asu_s_section_layout',
+        'settings'   => 'asu_s_options[date_posted]',
+      )
+  );
 
 }
 add_action( 'customize_register', 'asu_s_customize_register' );
