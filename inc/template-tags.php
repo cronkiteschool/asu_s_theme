@@ -80,7 +80,7 @@ function asu_s_posted_on() {
 		esc_attr( get_the_date( 'c' ) ),
 		esc_html( get_the_date($date_format) ),
 		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
+		esc_html( get_the_modified_date($date_format) )
 	);
 
 	$posted_on = sprintf(
