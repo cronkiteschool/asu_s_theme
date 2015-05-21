@@ -640,8 +640,8 @@ a:active {
 
 /* Small menu. */
 .menu-toggle, 
-.main-navigation.toggled ul {
-	display: inline:;
+.main-navigation.toggled > ul {
+	display: inline;
 }
 
 .main-navigation button {
