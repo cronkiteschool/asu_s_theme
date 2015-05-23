@@ -102,7 +102,10 @@ $home_url  = esc_url( home_url( '/' ) );
 <script type="text/javascript">
 ASUHeader.site_menu = ASUHeader.site_menu || {};
 ASUHeader.site_menu.site_name = '<?php bloginfo( 'name' ); ?>';
-ASUHeader.site_menu.json = '<?php echo sanitize_text_field(json_wp_nav_menu_array("primary", "primary-menu")); ?>'
 
+var navMenu = '<?php echo sanitize_text_field(json_wp_nav_menu_array("primary", "primary-menu")); ?>';
+if (navMenu && navMenu != '') {
+	ASUHeader.site_menu.json = navMenu;
+}
 </script>
 	<div id="content" class="site-content">
