@@ -137,7 +137,7 @@ function json_wp_nav_menu_array($location, $menu_id) {
     $items_wrap		= '[%3$s]';	// %3$s as parameter excludes items wrap
     $container		= false;
     $depth			= 0;
-	$output			= array();
+	$output			= "";
 
     // Create a new instance of JSON_Walker_Nav_Menu
     $JSON_Walker_Nav_Menu = new JSON_Walker_Nav_Menu();
