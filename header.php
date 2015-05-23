@@ -33,9 +33,9 @@ $home_url  = esc_url( home_url( '/' ) );
 			<?php
 				$search_option = asu_s_options( 'header_search' );
 				if (!$search_option == 1):
-					$asu_header = preg_replace('#<div id="asu_search">.*?</div>#is', ' ', $asu_header);
-					$asu_header = preg_replace('#<div id="main-search" class="main-search [^"]*">.*?</div>#is', ' ', $asu_header);
-					$asu_header = preg_replace('#<div class="f-search" [^>]*>.*?</div>#is', ' ', $asu_header);
+					$asu_header = preg_replace('#action="https://search\.asu\.edu/search"#', 'action="' . $home_url . '"', $asu_header);
+//					$asu_header = preg_replace('#<div id="main-search" class="main-search [^"]*">.*?</div>#is', ' ', $asu_header);
+//					$asu_header = preg_replace('#<div class="f-search" [^>]*>.*?</div>#is', ' ', $asu_header);
 				endif;
 			?>
 			<?php
@@ -78,9 +78,6 @@ $home_url  = esc_url( home_url( '/' ) );
 			</form>
 			<nav id="site-navigation" class="main-navigation" role="navigation">
 				<a href="<?php echo $home_url; ?>" id="site-name-handheld" class="site-name-handheld"><?php bloginfo( 'name' ); ?></a>
-				<button class="menu-toggle alignright" aria-controls="primary-menu" aria-expanded="false">
-					<i class="fa fa-bars"></i>
-				</button>
 				<?php
 					$wrapper  = '<ul id="%1$s" class="%2$s">';
 					$wrapper .= '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">';
@@ -102,4 +99,10 @@ $home_url  = esc_url( home_url( '/' ) );
 		</div><!-- #navigation -->
 	</header><!-- #masthead -->
 
+<script type="text/javascript">
+ASUHeader.site_menu = ASUHeader.site_menu || {};
+ASUHeader.site_menu.site_name = '<?php bloginfo( 'name' ); ?>';
+ASUHeader.site_menu.json = '<?php echo sanitize_text_field(json_wp_nav_menu_array("primary", "primary-menu")); ?>'
+
+</script>
 	<div id="content" class="site-content">

@@ -638,12 +638,6 @@ a:active {
 	display: none;
 }
 
-/* Small menu. */
-.menu-toggle, 
-.main-navigation.toggled > ul {
-	display: inline;
-}
-
 .main-navigation button {
 	color: #ededed;
 	background-color: inherit;
@@ -653,9 +647,6 @@ a:active {
 	box-shadow: none;
 }
 @media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none !important;
-	}
 	.main-navigation ul {
 		display: inline;
 	}
