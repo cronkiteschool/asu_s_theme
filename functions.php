@@ -97,6 +97,72 @@ function asu_s_widgets_init() {
 }
 add_action( 'widgets_init', 'asu_s_widgets_init' );
 
+/**
+ * Custom Navigation Walker to output JSON for ASU Header Menu.
+ */
+class JSON_Walker_Nav_Menu extends Walker_Nav_Menu {
+	static $counter = 0;
+
+	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+        if(self::$counter > 0) {
+            $output .= ",";
+        }
+		$output .= "{";
+		$output .= '"title":"' . $item->title . '",';
+		if (array_search('menu-item-has-children', $item->classes)) {
+			$output .= '"path":"' . $item->url . '",';
+		} else {
+			$output .= '"path":"' . $item->url . '"';
+		}
+	}
+   function end_el(&$output, $item, $depth=0, $args=array()) {
+
+        $output .= "}";
+        self::$counter ++;
+    }
+	function start_lvl(&$output, $depth = 0, $args = array()) {
+		$output .= '"children":[';
+		self::$counter = 0;
+	}
+
+    function end_lvl(&$output, $depth=0, $args=array()) {
+        $output .= "]";
+    }
+}
+
+function json_wp_nav_menu_array($location, $menu_id) {
+
+    $echo			= 0;		// true for yes, 0 for no
+    $fallback_cb	= false;	// false for no fallback
+    $items_wrap		= '[%3$s]';	// %3$s as parameter excludes items wrap
+    $container		= false;
+    $depth			= 0;
+	$output			= array();
+
+    // Create a new instance of JSON_Walker_Nav_Menu
+    $JSON_Walker_Nav_Menu = new JSON_Walker_Nav_Menu();
+    
+	// Prepare the argument for wp_nav_menu
+    $args = array(
+      'theme_location'	=> $location,
+      'menu_id'			=> $menu_id,
+      'echo'			=> $echo,
+      'fallback_cb'		=> $fallback_cb,
+      'items_wrap'		=> $items_wrap,
+      'container'		=> $container,
+      'depth'			=> $depth,
+      'output'			=> $output,
+      'walker'			=> $JSON_Walker_Nav_Menu,
+    );
+
+	$output = wp_nav_menu( $args);
+
+    return $output;
+}
+
+/**
+ * build Google Fonts URLs.
+ */
 function asu_s_fonts_url() {
     $fonts_url = '';
  
@@ -136,6 +202,9 @@ function asu_s_scripts() {
 
 	wp_register_script( 'asu_s-searchbox', get_template_directory_uri() . '/js/searchbox.js', array(), '20150506', true );
 	wp_enqueue_script( 'asu_s-searchbox' );
+
+	wp_register_script( 'asu-header-config', get_template_directory_uri() . '/js/asu-header-config.js', array(), '20150522', true );
+	wp_enqueue_script( 'asu-header-config' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
