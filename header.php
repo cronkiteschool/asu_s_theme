@@ -29,18 +29,7 @@ $home_url  = esc_url( home_url( '/' ) );
 
 	<header id="masthead" class="site-header" role="banner">
 		<div id="asu_header">
-			<?php $asu_header =  file_get_contents('http://www.asu.edu/asuthemes/4.3/headers/default.shtml'); ?>
-			<?php
-				$search_option = asu_s_options( 'header_search' );
-				if (!$search_option == 1):
-					$asu_header = preg_replace('#action="https://search\.asu\.edu/search"#', 'action="' . $home_url . '"', $asu_header);
-//					$asu_header = preg_replace('#<div id="main-search" class="main-search [^"]*">.*?</div>#is', ' ', $asu_header);
-//					$asu_header = preg_replace('#<div class="f-search" [^>]*>.*?</div>#is', ' ', $asu_header);
-				endif;
-			?>
-			<?php
-				echo $asu_header;
-			?><!-- ASU Header -->
+			<?php echo  file_get_contents('http://www.asu.edu/asuthemes/4.3/headers/default.shtml'); ?>
 		<!-- .asu_header -->
 
 		<div class="site-branding">
@@ -100,12 +89,12 @@ $home_url  = esc_url( home_url( '/' ) );
 	</header><!-- #masthead -->
 
 <script type="text/javascript">
-ASUHeader.site_menu = ASUHeader.site_menu || {};
-ASUHeader.site_menu.site_name = '<?php bloginfo( 'name' ); ?>';
-
-var navMenu = '<?php echo sanitize_text_field(json_wp_nav_menu_array("primary", "primary-menu")); ?>';
-if (navMenu && navMenu != '') {
-	ASUHeader.site_menu.json = navMenu;
-}
+	ASUHeader.site_menu = ASUHeader.site_menu || {};
+	ASUHeader.site_menu.site_name = '<?php bloginfo( 'name' ); ?>';
+	var asusearchbox = '<?php echo asu_s_options( 'header_search' ); ?>';
+	var navMenu = '<?php echo sanitize_text_field(json_wp_nav_menu_array("primary", "primary-menu")); ?>';
+	if (navMenu && navMenu != '') {
+		ASUHeader.site_menu.json = navMenu;
+	}
 </script>
 	<div id="content" class="site-content">

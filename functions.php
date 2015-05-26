@@ -203,7 +203,10 @@ function asu_s_scripts() {
 	wp_register_script( 'asu_s-searchbox', get_template_directory_uri() . '/js/searchbox.js', array(), '20150506', true );
 	wp_enqueue_script( 'asu_s-searchbox' );
 
-	wp_register_script( 'asu-header-config', get_template_directory_uri() . '/js/asu-header-config.js', array(), '20150522', true );
+	wp_register_script( 'asu-searchbox', get_template_directory_uri() . '/js/asu-searchbox.js', array( 'jquery' ), '20150522', true );
+	wp_enqueue_script( 'asu-searchbox' );
+
+	wp_register_script( 'asu-header-config', get_template_directory_uri() . '/js/asu-header-config.js', array( 'jquery' ), '20150522', true );
 	wp_enqueue_script( 'asu-header-config' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

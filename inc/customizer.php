@@ -481,7 +481,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_setting(
       'asu_s_options[header_search]',
       array(
-        'default'           => '1',
+        'default'           => 'default',
         'capability'        => 'edit_theme_options',
         'type'              => 'option',
       )
@@ -492,7 +492,11 @@ function asu_s_customize_register( $wp_customize ) {
         'label'      => esc_html__( 'ASU Header Search Box', 'asu_s' ),
         'section'    => 'asu_s_section_search',
         'settings'   => 'asu_s_options[header_search]',
-		'type'    => 'checkbox',
+		'type'    => 'radio',
+		'choices' => array(
+            'defualt' => 'ASU Google Search',
+            'wordpress' => 'WordPress Search',
+        ),
       )
   );
   //  =============================
