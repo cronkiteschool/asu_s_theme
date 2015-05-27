@@ -92,6 +92,7 @@ $home_url  = esc_url( home_url( '/' ) );
 	ASUHeader.site_menu = ASUHeader.site_menu || {};
 	ASUHeader.site_menu.site_name = '<?php bloginfo( 'name' ); ?>';
 	var asusearchbox = '<?php echo asu_s_options( 'header_search' ); ?>';
+	var home_url = '<?php echo home_url( '/' ); ?>';
 	var navMenu = '<?php echo sanitize_text_field(json_wp_nav_menu_array("primary", "primary-menu")); ?>';
 	if (navMenu && navMenu != '') {
 		ASUHeader.site_menu.json = navMenu;
