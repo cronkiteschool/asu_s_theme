@@ -70,7 +70,7 @@ if ( ! function_exists( 'asu_s_posted_on' ) ) :
  * Prints HTML with meta information for the current post-date/time and author.
  */
 function asu_s_posted_on() {
-	$date_format = asu_s_options( 'date_posted', '' );
+	$date_format = '';
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
