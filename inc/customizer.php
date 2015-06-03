@@ -500,6 +500,26 @@ function asu_s_customize_register( $wp_customize ) {
       )
   );
   //  =============================
+  //  = Toggle Search mobile menu =
+  //  =============================
+  $wp_customize->add_setting(
+      'asu_s_options[mobile_toggle_search]',
+      array(
+        'default'           => FALSE,
+        'capability'        => 'edit_theme_options',
+        'type'              => 'option',
+      )
+  );
+  $wp_customize->add_control(
+      'asu_s_mobile_toggle_search',
+      array(
+        'label'      => esc_html__( 'Add Toggle Search Box to Mobile Main Menu', 'asu_s' ),
+        'section'    => 'asu_s_section_search',
+        'settings'   => 'asu_s_options[mobile_toggle_search]',
+		'type'    => 'checkbox',
+      )
+  );
+  //  =============================
   //  =============================
   //  = Layout options            =
   //  =============================

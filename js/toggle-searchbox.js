@@ -1,5 +1,5 @@
 /**
- * searchbox.js
+ * toggle-searchbox.js
  *
  * Handles toggling a searchbox for small screens.
  */

@@ -7,7 +7,8 @@
  * @package asu_s
  */
 
-$home_url  = esc_url( home_url( '/' ) );
+$home_url = esc_url( home_url( '/' ) );
+$blog_title = get_bloginfo();
 
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -55,20 +56,23 @@ $home_url  = esc_url( home_url( '/' ) );
 					echo wp_kses( sprintf( $prefix, esc_html( $org_option ) ), wp_kses_allowed_html( 'post' ) );
 				  }
 				  ?>
-				  <a href="<?php echo $home_url; ?>" id="blog-name-site-title"><?php bloginfo( 'name' ); ?></a>
+				  <a href="<?php echo $home_url; ?>" id="blog-name-site-title"><?php echo $blog_title; ?></a>
 				</h1>
 			</div>
 		</div><!-- .site-branding -->
 
 		<div id="navigation">
-			<form id="search-handheld" role="search" action="<?php echo $home_url; ?>/" method="get">
-				<div id="label-handheld"><label for="search-terms-handheld" id="search-label-handheld" role=button><i id="search-icon-handheld" class="fa fa-search"></i></label></div>
-				<div id="input-handheld"><input type="text" name="s" id="search-terms-handheld" placeholder="Search for..."></div>
-			</form>
 			<nav id="site-navigation" class="main-navigation" role="navigation">
-				<a href="<?php echo $home_url; ?>" id="site-name-handheld" class="site-name-handheld"><?php bloginfo( 'name' ); ?></a>
 				<?php
-					$wrapper  = '<ul id="%1$s" class="%2$s">';
+					$wrapper  = '';
+					if ( asu_s_options( 'mobile_toggle_search' ) == 1 ) {
+						$wrapper .= "<form id=\"search-handheld\" role=\"search\" action=\"$home_url\" method=\"get\">";
+						$wrapper .= '<div id="label-handheld"><label for="search-terms-handheld" id="search-label-handheld" role=button><i id="search-icon-handheld" class="fa fa-search"></i></label></div>';
+						$wrapper .= '<div id="input-handheld"><input type="text" name="s" id="search-terms-handheld" placeholder="Search for..."></div>';
+						$wrapper .= '</form>';
+					}
+					$wrapper .= "<a href=\"$home_url\" id=\"site-name-handheld\" class=\"site-name-handheld\">$blog_title</a>";
+					$wrapper .= '<ul id="%1$s" class="%2$s">';
 					$wrapper .= '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">';
 					$wrapper .= "<a href=\"$home_url\" title=\"Home\"  id=\"home-icon-main-nav\">";
 					$wrapper .= '<span class="fa fa-home fa-fw menu-home-icon" aria-hidden="true"></span><span class="menu-home-text">Home</span>';
@@ -90,7 +94,7 @@ $home_url  = esc_url( home_url( '/' ) );
 
 <script type="text/javascript">
 	ASUHeader.site_menu = ASUHeader.site_menu || {};
-	ASUHeader.site_menu.site_name = '<?php bloginfo( 'name' ); ?>';
+	ASUHeader.site_menu.site_name = '<?php echo $blog_title; ?>';
 	var asusearchbox = '<?php echo asu_s_options( 'header_search' ); ?>';
 	var home_url = '<?php echo home_url( '/' ); ?>';
 	var navMenu = '<?php echo sanitize_text_field(json_wp_nav_menu_array("primary", "primary-menu")); ?>';
