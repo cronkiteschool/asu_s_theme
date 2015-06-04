@@ -161,36 +161,6 @@ function json_wp_nav_menu_array($location, $menu_id) {
 }
 
 /**
- * build Google Fonts URLs.
- */
-function asu_s_fonts_url() {
-    $fonts_url = '';
- 
-    /* Translators: If there are characters in your language that are not
-    * supported by Roboto, translate this to 'off'. Do not translate
-    * into your own language.
-    */
-    $roboto = _x( 'on', 'Roboto font: on or off', 'asu_s' );
- 
-    if ( 'off' !== $roboto ) {
-        $font_families = array();
- 
-        if ( 'off' !== $roboto ) {
-            $font_families[] = 'Roboto:400,700,400italic,700italic';
-        }
- 
-        $query_args = array(
-            'family' => urlencode( implode( '|', $font_families ) ),
-            'subset' => urlencode( 'latin,latin-ext' ),
-        );
- 
-        $fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
-    }
- 
-    return esc_url_raw( $fonts_url );
-}
-
-/**
  * Enqueue scripts and styles.
  */
 function asu_s_scripts() {
@@ -222,16 +192,20 @@ add_action( 'wp_enqueue_scripts', 'asu_s_scripts' );
  * Enqueue external styles.
  */
 function asu_s_scripts_styles() {
-    wp_enqueue_style( 'asu_s-fonts', asu_s_fonts_url(), array(), null );
-    wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'); 
+	// Setup font arguments
+	$query_args = array(
+		'family' => 'Roboto:400,300,500,700,900'
+	);
+	$protocol = is_ssl() ? 'https' : 'http';
+ 
+ 	// A safe way to register a CSS style file for later use
+	wp_register_style( 'google-fonts', add_query_arg( $query_args, $protocol . "://fonts.googleapis.com/css" ), array(), null );
+	
+	// A safe way to add/enqueue a CSS style file to a WordPress generated page
+	wp_enqueue_style( 'google-fonts' );
+    wp_enqueue_style('font-awesome', $protocol . '://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'); 
 }
 add_action( 'wp_enqueue_scripts', 'asu_s_scripts_styles' );
-
-function asu_s_editor_styles() {
-    add_editor_style( array( 'editor-style.css', asu_s_fonts_url() ) );
-    add_editor_style( array( 'editor-style.css', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' ) );
-}
-add_action( 'after_setup_theme', 'asu_s_editor_styles' );
 
 /**
  * Implement the Custom Header feature.
