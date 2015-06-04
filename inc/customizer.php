@@ -465,13 +465,13 @@ function asu_s_customize_register( $wp_customize ) {
   );
   //  =============================
   //  =============================
-  //  = Search Options            =
+  //  =  ASU Header               =
   //  =============================
   //  =============================
   $wp_customize->add_section(
-      'asu_s_section_search',
+      'asu_s_section_asu_header',
       array(
-        'title'      => esc_html__( 'Search','asu_s' ),
+        'title'      => esc_html__( 'ASU Header','asu_s' ),
         'priority'   => 40,
       )
   );
@@ -490,21 +490,21 @@ function asu_s_customize_register( $wp_customize ) {
       'asu_s_asu_gsa',
       array(
         'label'      => esc_html__( 'ASU Header Search Box', 'asu_s' ),
-        'section'    => 'asu_s_section_search',
+        'section'    => 'asu_s_section_asu_header',
         'settings'   => 'asu_s_options[header_search]',
 		'type'    => 'radio',
 		'choices' => array(
             'defualt' => 'ASU Google Search',
             'wordpress' => 'WordPress Search',
-	    'hidden' => 'Hide Search Box',
+            'hidden' => 'Hide Search Box',
         ),
       )
   );
   //  =============================
-  //  = Toggle Search mobile menu =
+  //  = Use Wordpress Login       =
   //  =============================
   $wp_customize->add_setting(
-      'asu_s_options[mobile_toggle_search]',
+      'asu_s_options[header_wp_login]',
       array(
         'default'           => FALSE,
         'capability'        => 'edit_theme_options',
@@ -512,11 +512,11 @@ function asu_s_customize_register( $wp_customize ) {
       )
   );
   $wp_customize->add_control(
-      'asu_s_mobile_toggle_search',
+      'asu_s_header_wp_login',
       array(
-        'label'      => esc_html__( 'Add Toggle Search Box to Mobile Main Menu', 'asu_s' ),
-        'section'    => 'asu_s_section_search',
-        'settings'   => 'asu_s_options[mobile_toggle_search]',
+        'label'      => esc_html__( 'Use Wordpress for Login', 'asu_s' ),
+        'section'    => 'asu_s_section_asu_header',
+        'settings'   => 'asu_s_options[header_wp_login]',
 		'type'    => 'checkbox',
       )
   );
@@ -572,6 +572,26 @@ function asu_s_customize_register( $wp_customize ) {
         'label'      => esc_html__( 'Fixed Width Page Display', 'asu_s' ),
         'section'    => 'asu_s_section_layout',
         'settings'   => 'asu_s_options[fixed_width]',
+		'type'    => 'checkbox',
+      )
+  );
+  //  =============================
+  //  = Toggle Search mobile menu =
+  //  =============================
+  $wp_customize->add_setting(
+      'asu_s_options[mobile_toggle_search]',
+      array(
+        'default'           => FALSE,
+        'capability'        => 'edit_theme_options',
+        'type'              => 'option',
+      )
+  );
+  $wp_customize->add_control(
+      'asu_s_mobile_toggle_search',
+      array(
+        'label'      => esc_html__( 'Add Toggle Search Box to Mobile Nav Menu', 'asu_s' ),
+        'section'    => 'asu_s_section_layout',
+        'settings'   => 'asu_s_options[mobile_toggle_search]',
 		'type'    => 'checkbox',
       )
   );

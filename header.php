@@ -101,5 +101,18 @@ $blog_title = get_bloginfo();
 	if (navMenu && navMenu != '') {
 		ASUHeader.site_menu.json = navMenu;
 	}
+	<?php
+		if ( asu_s_options( 'header_wp_login' ) == 1 ) {
+			echo "ASUHeader.signin_url = \"" . wp_login_url() . "\";\n";
+			echo "ASUHeader.signout_url = \"" . wp_logout_url( get_permalink() ) . "\";\n";
+		
+			if ( is_user_logged_in() == 1 ) {
+				global $current_user;
+				get_currentuserinfo();
+				echo "ASUHeader.user_signedin = true;\n";
+				echo "ASUHeader.user_displayname = '$current_user->display_name';\n";
+			}
+		}
+	?>
 </script>
 	<div id="content" class="site-content">
