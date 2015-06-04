@@ -496,6 +496,7 @@ function asu_s_customize_register( $wp_customize ) {
 		'choices' => array(
             'defualt' => 'ASU Google Search',
             'wordpress' => 'WordPress Search',
+	    'hidden' => 'Hide Search Box',
         ),
       )
   );

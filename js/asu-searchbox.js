@@ -11,16 +11,22 @@ jQuery(window).bind("load", function () {
 	if (home_url === undefined) {
         home_url = '';
     }
+	if('hidden' === asusearchbox){
+			jQuery("form[name='gs']").each(function(i,e){
+				e.remove();
+			});
+			jQuery("#search_new").remove();
+	};
 	if('wordpress' === asusearchbox){
-	jQuery("form[name='gs']").submit(function(){
-		jQuery("form[name='gs']").each(function(i,e){
-			e.setAttribute('action', home_url );
-			e.setAttribute('type', 'search' );
+		jQuery("form[name='gs']").submit(function(){
+			jQuery("form[name='gs']").each(function(i,e){
+				e.setAttribute('action', home_url );
+				e.setAttribute('type', 'search' );
+			});
+			jQuery("input[name='q']").each(function(i,e){
+				e.setAttribute('name', 's' );
+			});
 		});
-		jQuery("input[name='q']").each(function(i,e){
-			e.setAttribute('name', 's' );
-		});
-	});
 	};
 });
 
