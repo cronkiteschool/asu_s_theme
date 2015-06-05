@@ -1,16 +1,16 @@
 a {
-	color: $color__link;
+	color: $color_paprika;
 	font-weight: normal;
 	text-decoration: none;
 	&:visited {
-		color: $color__link-visited;
+		color: $color_paprika;
 	}
 }
 
 .site-content a {
-	border-bottom: 1px dotted #903;
+	border-bottom: 1px dotted $color_paprika;
 	&:hover, &:focus, &:active {
-		color: #d23153;
+		color: $color_brick_red;
 		text-decoration: none;
 	}
 }
@@ -23,6 +23,6 @@ a {
 }
 
 .tag {
-  color: #008;
+  color: $color_navy_blue;
 }
 

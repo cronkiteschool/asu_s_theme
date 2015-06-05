@@ -4,7 +4,7 @@ input,
 select,
 textarea {
 	font-family: $font__main;
-	color: $color__text-main;
+	color: $color_shark;
 	@include font-size(1);
 	line-height: $font__line-height-body;
 	font-weight: $font__weight-body;

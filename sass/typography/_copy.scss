@@ -28,9 +28,9 @@ pre {
 	display: block;
 	word-break: break-all;
 	word-wrap: break-word;
-	color: $color__text-pre;
-	background-color: $color__background-pre;
-	border: 1px solid $color__border-pre;
+	color: $color_tuatara;
+	background-color: $color_wild_sand;
+	border: 1px solid $color_silver;
 	border-radius: 4px;
 	font-family: $font__pre;
 	@include font-size(0.9375);
@@ -56,20 +56,20 @@ var {
 	font-family: $font__code;
 	padding: 2px 4px;
 	@include font-size(0.9375);
-	color: $color__text-code;
-	background-color: $color__background-code;
+	color: $color_maroon_flush;
+	background-color: $color_soft_peach;
 	border-radius: 4px;
 }
 
 abbr,
 acronym {
-	border-bottom: 1px dotted $color__border-abbr;
+	border-bottom: 1px dotted $color_dove_gray;
 	cursor: help;
 }
 
 mark,
 ins {
-	background: $color__background-ins;
+	background: $color_shalimar;
 	text-decoration: none;
 }
 

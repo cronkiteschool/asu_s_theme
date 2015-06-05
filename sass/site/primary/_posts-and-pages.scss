@@ -34,12 +34,12 @@
 }
 
 article.post {
-  background-color: #f1f1f1;
-  border-bottom: 1px solid $color__border-hr-top;
+  background-color: $color_seashell;
+  border-bottom: 1px solid $color_nobel;
   margin-bottom: 10px;
   padding: 20px;
 }
 
 .entry-content tr.odd td, .comment-content tr.odd td {
-  background-color: #fafafa;
+  background-color: $color_alabaster;
 }

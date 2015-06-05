@@ -1,12 +1,12 @@
 .site-info {
-  background-color: #1e1e1e;
+  background-color: $color_cod_gray;
   padding-top: 1em;
   padding-bottom: .5em;
   img {
     max-width: 300px;
   }
   h2 {
-    color: #a9a9a9;
+    color: $color_silver_chalice;
   }
   ul, ol {
     list-style: none;
@@ -33,28 +33,28 @@
     margin: 0 2em;
   }
   .phone-link, address {
-    border-bottom-color: #ccc;
-    color: #ccc;
+    border-bottom-color: $color_silver;
+    color: $color_silver;
     margin-bottom: 0;
   }
   .contact-link {
-    border-bottom-color: #a9a9a9;
+    border-bottom-color: $color_silver_chalice;
     border-bottom-style: dotted;
     border-bottom-width: 1px;
-    color: #a9a9a9;
+    color: $color_silver_chalice;
     &:hover, &:focus {
-      color: #fff;
+      color: $white;
     }
   }
   .social-media > li {
     float: left;
     > a {
       border-bottom: 0;
-      color: #a9a9a9;
+      color: $color_silver_chalice;
       font-size: 2rem;
       margin-right: .2em;
       &:hover, &:focus {
-        color: #fff;
+        color: $white;
       }
     }
     &:last-child > a {
@@ -78,11 +78,11 @@
       padding: .5em 1em .5em .75em;
       a {
         border-bottom-color: transparent;
-        color: #4f5557;
+        color: $color_abbey;
         font-weight: bold;
         text-decoration: none;
         &:first-child {
-          color: #000;
+          color: $color_black;
         }
         &:hover, &:focus {
           text-decoration: underline;
