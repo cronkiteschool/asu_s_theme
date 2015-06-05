@@ -7,20 +7,24 @@ input[type="submit"] {
 	border-radius: 3px;
 	background: $color__background-button;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 15px 17px rgba(255, 255, 255, 0.5), inset 0 -5px 12px rgba(0, 0, 0, 0.05);
-	color: rgba(0, 0, 0, .8);
+	color: $color__text-input-focus;
 	@include font-size(0.75);
-	line-height: 1;
+	line-height: 1.44;
 	padding: .6em 1em .4em;
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 
 	&:hover {
+		background-color: $color__background-button-hover;
 		border-color: $color__border-button-hover;
+		color: $color__text-input-focus;
 		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
 	}
 
 	&:active,
 	&:focus {
+		background-color: $color__background-button-focus;
 		border-color: $color__border-button-focus;
+		color: $color__text-input-focus;
 		box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
 	}
 }

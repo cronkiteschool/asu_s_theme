@@ -1,19 +1,28 @@
 a {
 	color: $color__link;
-
+	font-weight: normal;
+	text-decoration: none;
 	&:visited {
 		color: $color__link-visited;
 	}
-	&:hover,
-	&:focus,
-	&:active {
-		color: $color__link-hover;
-	}
-	&:focus {
-		outline: thin dotted;
-	}
-	&:hover,
-	&:active {
-		outline: 0;
+}
+
+.site-content a {
+	border-bottom: 1px dotted #903;
+	&:hover, &:focus, &:active {
+		color: #d23153;
+		text-decoration: none;
 	}
 }
+
+.entry-title a {
+	border-bottom: 0;
+	&:hover, &:focus, &:active {
+		border-bottom: 0;
+	}
+}
+
+.tag {
+  color: #008;
+}
+

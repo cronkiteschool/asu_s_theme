@@ -25,3 +25,18 @@ textarea {
 	padding-left: 3px;
 	width: 100%;
 }
+
+legend {
+	font-size: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+label {
+	font-size: .75em;
+	font-weight: normal;
+}
+
+output {
+	color: $color__text-input-focus;
+	line-height: 1.44;
+}

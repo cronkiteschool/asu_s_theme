@@ -8,8 +8,8 @@
 .site-header:after,
 .site-content:before,
 .site-content:after,
-.site-footer:before,
-.site-footer:after {
+.site-info:before,
+.site-info:after {
 	@include clearfix;
 }
 
@@ -18,6 +18,6 @@
 .comment-content:after,
 .site-header:after,
 .site-content:after,
-.site-footer:after {
+.site-info:after {
 	@include clearfix-after;
 }

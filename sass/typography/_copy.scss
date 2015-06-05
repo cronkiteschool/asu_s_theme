@@ -1,8 +1,13 @@
 p {
-	margin-bottom: 1.5em;
+	line-height: 1.5em;
+	margin: 0 0 1.5em;
+	font-weight: $font__weight-body;
 }
 
-dfn, cite, em, i {
+dfn,
+cite,
+em,
+i {
 	font-style: italic;
 }
 
@@ -12,30 +17,58 @@ blockquote {
 
 address {
 	margin: 0 0 1.5em;
+	font-weight: $font__weight-body;
+	line-height: $font__line-height-body;
+	strong {
+		font-weight: normal;
+	}
 }
 
 pre {
-	background: $color__background-pre;
+	display: block;
+	word-break: break-all;
+	word-wrap: break-word;
+	color: $color__text-pre;
+	background-color: $color__background-pre;
+	border: 1px solid $color__border-pre;
+	border-radius: 4px;
 	font-family: $font__pre;
 	@include font-size(0.9375);
 	line-height: $font__line-height-pre;
-	margin-bottom: 1.6em;
+	margin: 0 0 .7em;
 	max-width: 100%;
 	overflow: auto;
-	padding: 1.6em;
+	padding: .6em;
+	code {
+		padding: 0;
+		font-size: inherit;
+		color: inherit;
+		white-space: pre-wrap;
+		background-color: transparent;
+		border-radius: 0;
+	}
 }
 
-code, kbd, tt, var {
+code,
+kbd,
+tt,
+var {
 	font-family: $font__code;
+	padding: 2px 4px;
 	@include font-size(0.9375);
+	color: $color__text-code;
+	background-color: $color__background-code;
+	border-radius: 4px;
 }
 
-abbr, acronym {
+abbr,
+acronym {
 	border-bottom: 1px dotted $color__border-abbr;
 	cursor: help;
 }
 
-mark, ins {
+mark,
+ins {
 	background: $color__background-ins;
 	text-decoration: none;
 }
