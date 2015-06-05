@@ -7,6 +7,11 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php the_title( sprintf( '<h1 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h1>' ); ?>
+		<?php 
+			if ( 'post' == get_post_type() ) :
+				asu_s_posted_on();
+			endif;
+		?>
 
 	</header><!-- .entry-header -->
 
@@ -29,9 +34,6 @@
 
 	<footer class="entry-footer">
 		<?php 
-			if ( 'post' == get_post_type() ) :
-				asu_s_posted_on();
-			endif;
 			asu_s_entry_footer();
 		?>
 	</footer><!-- .entry-footer -->

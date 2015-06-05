@@ -84,7 +84,7 @@ function asu_s_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( '%s', 'post date', 'asu_s' ),
+		_x( 'Posted on %s', 'post date', 'asu_s' ),
 		$time_string
 	);
 
