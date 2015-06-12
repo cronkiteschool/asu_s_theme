@@ -204,6 +204,17 @@ function asu_s_scripts_styles() {
 	// A safe way to add/enqueue a CSS style file to a WordPress generated page
 	wp_enqueue_style( 'google-fonts' );
     wp_enqueue_style('font-awesome', $protocol . '://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'); 
+
+	if ( asu_s_options( 'sidebar_layout', 'default' ) == "default" ) {
+		// Retrieves the stored value from the database
+		$meta_css = get_post_meta( get_the_ID(), 'meta-sidebar-css', true );
+
+		// Checks and displays the retrieved value
+		if( !empty( $meta_css ) ) {
+			wp_add_inline_style( 'asu_s-style', $meta_css );
+		}
+	}
+
 }
 add_action( 'wp_enqueue_scripts', 'asu_s_scripts_styles' );
 

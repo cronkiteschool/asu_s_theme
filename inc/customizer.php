@@ -548,7 +548,7 @@ function asu_s_customize_register( $wp_customize ) {
   $wp_customize->add_control(
       'asu_s_sidebar_layout',
       array(
-        'label'      => esc_html__( 'Sidebar Layout', 'asu_s' ),
+        'label'      => esc_html__( 'Main Sidebar Position', 'asu_s' ),
         'section'    => 'asu_s_section_layout',
         'settings'   => 'asu_s_options[sidebar_layout]',
 		'type'    => 'radio',
@@ -804,11 +804,11 @@ endif;
 function asu_s_get_layout_schemes() {
 	return apply_filters( 'asu_s_layout_schemes', array(
 		'default' => array(
-			'label'  => esc_html__( 'None', 'asu_s' ),
+			'label'  => esc_html__( 'Custom For Each Page', 'asu_s' ),
 			'css' => array(),
 		),
 		'content-sidebar'  => array(
-			'label'  => esc_html__( 'Content on left', 'asu_s' ),
+			'label'  => esc_html__( 'Right', 'asu_s' ),
 			'css' => array(
 				'.content-area' => array(
 					'float' => 'left',
@@ -839,7 +839,7 @@ function asu_s_get_layout_schemes() {
 			),
 		),
 		'sidebar-content'    => array(
-			'label'  => esc_html__( 'Content on right', 'asu_s' ),
+			'label'  => esc_html__( 'Left', 'asu_s' ),
 			'css' => array(
 				'.content-area' => array(
 					'float' => 'right',
@@ -880,8 +880,7 @@ if ( ! function_exists( 'asu_s_get_layout_scheme' ) ) :
  *
  * @return array An associative array of either the current or default layout scheme css values.
  */
-function asu_s_get_layout_scheme() {
-	$layout_scheme_option = asu_s_options( 'sidebar_layout', 'default' );
+function asu_s_get_layout_scheme($layout_scheme_option = 'default' ) {
 	$layout_schemes       = asu_s_get_layout_schemes();
 
 	if ( array_key_exists( $layout_scheme_option, $layout_schemes ) ) {
@@ -982,7 +981,8 @@ function asu_s_fixed_width() {
  * @see wp_add_inline_style()
  */
 function asu_s_customize_css() {
-	$layout_scheme = asu_s_get_layout_scheme();
+	$sidebar_layout = asu_s_options( 'sidebar_layout', 'default' );
+	$layout_scheme = asu_s_get_layout_scheme($sidebar_layout);
 	$fixed_width = asu_s_fixed_width();
 
 	$css = "/* Layout Scheme */\n";
@@ -995,3 +995,86 @@ function asu_s_customize_css() {
 
 }
 add_action( 'wp_enqueue_scripts', 'asu_s_customize_css' );
+
+/**
+ * Adds a meta box to the post editing screen for sidebar layout
+ */
+function asu_s_custom_meta() {
+
+	$post_types = get_post_types( array( 'public' => true ) ); 
+
+	foreach ( $post_types as $post_type ) {
+		if ( 'attachment' == $postType ) {
+			continue;
+		}
+		add_meta_box(
+			'asu_s_sidebar_layout_meta',
+			esc_html__( 'Main Sidebar Position', 'asu_s' ),
+			'asu_s_meta_callback',
+			$post_type,
+			'side'
+		);	
+	}
+}
+add_action( 'add_meta_boxes', 'asu_s_custom_meta' );
+
+/**
+ * Outputs the content of the meta box
+ */
+function asu_s_meta_callback( $post ) {
+   wp_nonce_field( basename( __FILE__ ), 'asu_s_nonce' );
+    $asu_s_stored_meta = get_post_meta( $post->ID );
+	$layout_schemes = asu_s_get_layout_scheme_choices();
+ 
+	echo '<p>';
+    echo '<div class="asu_s-row-content">';
+
+	foreach ($layout_schemes as $key => $lable)
+	{
+		echo '<label for="meta-sidebar-', $key, '">';
+		echo '<input type="radio" name="meta-sidebar" id="meta-sidebar-', $key, '" value=', $key;
+		if ( isset ( $asu_s_stored_meta['meta-sidebar'] ) ) echo checked( $asu_s_stored_meta['meta-sidebar'][0], "$key" );
+		if ( asu_s_options( 'sidebar_layout', 'default' ) != "default" ) echo ' disabled="true" ';
+		echo '>';
+            echo esc_html__( $lable, 'asu_s' );
+		echo '</label>';
+		echo '<br>';
+	}
+
+    echo '</div>';
+	echo '</p>';
+}
+
+/**
+ * Saves the custom meta input
+ */
+function asu_s_meta_save( $post_id ) {
+ 
+    // Checks save status
+    $is_autosave = wp_is_post_autosave( $post_id );
+    $is_revision = wp_is_post_revision( $post_id );
+    $is_valid_nonce = ( isset( $_POST[ 'asu_s_nonce' ] ) && wp_verify_nonce( $_POST[ 'asu_s_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+ 
+    // Exits script depending on save status
+    if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
+        return;
+    }
+ 
+    // Checks for input and sanitizes/saves if needed
+    if( isset( $_POST[ 'meta-text' ] ) ) {
+        update_post_meta( $post_id, 'meta-text', sanitize_text_field( $_POST[ 'meta-text' ] ) );
+    }
+
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'meta-sidebar' ] ) ) {
+    	update_post_meta( $post_id, 'meta-sidebar', $_POST[ 'meta-sidebar' ] );
+		$layout_scheme = asu_s_get_layout_scheme( $_POST[ 'meta-sidebar' ] );
+
+		$css = "/* Page Layout Scheme */\n";
+		$css .= asu_s_array_to_css( $layout_scheme );
+		if( !empty( $css ) )
+    		update_post_meta( $post_id, 'meta-sidebar-css', $css );
+	}
+}
+add_action( 'save_post', 'asu_s_meta_save' );
+

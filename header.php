@@ -19,11 +19,13 @@ $blog_title = get_bloginfo();
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/heads/default.shtml'); ?><!-- ASU Header -->
+
 <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 <?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/gtm.shtml'); ?><!-- ASU Google Tag Manager -->
+
 
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'asu' ); ?></a>
@@ -105,7 +107,7 @@ $blog_title = get_bloginfo();
 		if ( asu_s_options( 'header_wp_login' ) == 1 ) {
 			echo "ASUHeader.signin_url = \"" . wp_login_url() . "\";\n";
 			echo "ASUHeader.signout_url = \"" . wp_logout_url( get_permalink() ) . "\";\n";
-		
+
 			if ( is_user_logged_in() == 1 ) {
 				global $current_user;
 				get_currentuserinfo();
