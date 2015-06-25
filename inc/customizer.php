@@ -966,7 +966,7 @@ function asu_s_fixed_width() {
 	if ( $fixed_width_option == 1 ) {
 		$css['.site'] = array(
 			'margin' => '0 auto',
-			'max-width' => '980px',
+			'max-width' => '1170px',
 		);
 	}
 	if( !empty( $css ) )
