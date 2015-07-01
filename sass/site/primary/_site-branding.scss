@@ -1,5 +1,13 @@
-.site-info {
+.site-header {
+  background-color: $white;
+}
+
+.site-footer {
   background-color: $color_cod_gray;
+}
+
+.site-info {
+/*   background-color: $color_cod_gray; */
   padding-top: 1em;
   padding-bottom: .5em;
   img {
@@ -30,7 +38,7 @@
   .contact-info {
     float: left;
     width: 45%;
-    margin: 0 2em;
+     margin: 0 2em;
   }
   .phone-link, address {
     border-bottom-color: $color_silver;
@@ -92,6 +100,10 @@
   }
 }
 
+.asu-footer {
+  background-color: #E5E5E5;
+}
+
 #site-name-handheld {
   display: inline-block;
   padding-left: 2.5em;
@@ -110,4 +122,35 @@
   margin-bottom: .5em;
   padding: 1em;
   position: relative;
+}
+
+#hero {
+  display: block;
+  transform: scale(1.1);
+  /*z-index: -2;*/
+  overflow: hidden;
+  /*position: relative;*/
+}
+#hero-image {
+  z-index: -1;
+  position: relative;
+}
+
+.hero-text {
+	z-index: 9999;
+  position: relative;
+}
+.bg {
+  background-size: cover;
+  height: 100vh;
+  max-height: 300px;
+  background-position: center;
+}
+
+.blur {
+	filter: blur($image_blur);
+	-webkit-filter: blur($image_blur);
+	-moz-filter: blur($image_blur);
+	-o-filter: blur($image_blur);
+	-ms-filter: blur($image_blur);
 }

@@ -11,7 +11,7 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
-		<div class="site-info">
+		<div class="site-info fixed-width">
 			<div class="contact-info">
 <?php
             //  =============================
@@ -260,12 +260,13 @@
 				?>
 			</div>
 		</div><!-- .site-info -->
-		<div class="asu-info">
-			<?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/footer.shtml'); ?><!-- ASU Footer -->
-		</div><!-- /.asu-info -->
+		<div class="asu-footer">
+			<div class="asu-info fixed-width">
+				<?php echo file_get_contents('http://www.asu.edu/asuthemes/4.3/includes/footer.shtml'); ?><!-- ASU Footer -->
+			</div><!-- /.asu-info -->
+		</div><!-- /.asu-footer -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
-
 <?php wp_footer(); ?>
 </body>
 </html>

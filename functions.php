@@ -46,7 +46,7 @@ function asu_s_setup() {
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	//add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -75,6 +75,9 @@ function asu_s_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+
+	add_image_size( 'hero-image', 1170, 380, true );
+	add_image_size( 'hero-image-jumbo', 1170, 700, true );
 }
 endif; // asu_s_setup
 add_action( 'after_setup_theme', 'asu_s_setup' );
@@ -237,6 +240,11 @@ require get_template_directory() . '/inc/extras.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Custom Meta Boxes.
+ */
+require get_template_directory() . '/inc/metaboxes.php';
 
 /**
  * Load Jetpack compatibility file.

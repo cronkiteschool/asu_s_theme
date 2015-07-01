@@ -31,11 +31,11 @@ $blog_title = get_bloginfo();
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'asu' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
-		<div id="asu_header">
+		<div id="asu_header" class="fixed-width">
 			<?php echo  file_get_contents('http://www.asu.edu/asuthemes/4.3/headers/default.shtml'); ?>
 		<!-- .asu_header -->
-
-		<div class="site-branding">
+		</div>
+		<div class="site-branding fixed-width">
 			<div id="site-name-screen" class="section site-name-screen">
 				<h1 class="site-title" id="asu_school_name">
 				  <?php
@@ -64,7 +64,7 @@ $blog_title = get_bloginfo();
 		</div><!-- .site-branding -->
 
 		<div id="navigation">
-			<nav id="site-navigation" class="main-navigation" role="navigation">
+			<nav id="site-navigation" class="main-navigation fixed-width" role="navigation">
 				<?php
 					$wrapper  = '';
 					if ( asu_s_options( 'mobile_toggle_search' ) == 1 ) {
@@ -117,4 +117,4 @@ $blog_title = get_bloginfo();
 		}
 	?>
 </script>
-	<div id="content" class="site-content">
+	<div id="content" class="site-content fixed-width">

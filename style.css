@@ -979,8 +979,16 @@ article.post {
 /*--------------------------------------------------------------
 ## Site Branding
 --------------------------------------------------------------*/
-.site-info {
+.site-header {
+  background-color: #fff;
+}
+
+.site-footer {
   background-color: #1e1e1e;
+}
+
+.site-info {
+  /*   background-color: $color_cod_gray; */
   padding-top: 1em;
   padding-bottom: .5em;
 }
@@ -1069,6 +1077,10 @@ article.post {
   text-decoration: underline;
 }
 
+.asu-footer {
+  background-color: #E5E5E5;
+}
+
 #site-name-handheld {
   display: inline-block;
   padding-left: 2.5em;
@@ -1087,6 +1099,39 @@ article.post {
   margin-bottom: .5em;
   padding: 1em;
   position: relative;
+}
+
+#hero {
+  display: block;
+  transform: scale(1.1);
+  /*z-index: -2;*/
+  overflow: hidden;
+  /*position: relative;*/
+}
+
+#hero-image {
+  z-index: -1;
+  position: relative;
+}
+
+.hero-text {
+  z-index: 9999;
+  position: relative;
+}
+
+.bg {
+  background-size: cover;
+  height: 100vh;
+  max-height: 300px;
+  background-position: center;
+}
+
+.blur {
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
 }
 
 /*--------------------------------------------------------------

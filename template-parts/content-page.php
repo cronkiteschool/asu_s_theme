@@ -7,6 +7,14 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php
+	// check if the post has a Post Thumbnail assigned to it.
+	if ( has_post_thumbnail() ) {
+		echo '<div id="featured-image" class="featured-image">';
+		the_post_thumbnail('hero-image');
+		echo '</div>';
+	} 
+	?>
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
