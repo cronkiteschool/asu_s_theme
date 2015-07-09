@@ -75,7 +75,7 @@ $blog_title = get_bloginfo();
 					}
 					$wrapper .= "<a href=\"$home_url\" id=\"site-name-handheld\" class=\"site-name-handheld\">$blog_title</a>";
 					$wrapper .= '<ul id="%1$s" class="%2$s">';
-					$wrapper .= '<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children">';
+					$wrapper .= '<li class="menu-item menu-item-type-post_type menu-item-object-page">';
 					$wrapper .= "<a href=\"$home_url\" title=\"Home\"  id=\"home-icon-main-nav\">";
 					$wrapper .= '<span class="fa fa-home fa-fw menu-home-icon" aria-hidden="true"></span><span class="menu-home-text">Home</span>';
 					$wrapper .= '</a>';

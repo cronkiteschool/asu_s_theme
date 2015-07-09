@@ -167,22 +167,24 @@ function json_wp_nav_menu_array($location, $menu_id) {
  * Enqueue scripts and styles.
  */
 function asu_s_scripts() {
-	wp_enqueue_style( 'asu_s-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'asu_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-
-	wp_enqueue_script( 'asu_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
-
+	wp_register_script( 'asu_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_register_script( 'asu_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 	wp_register_script( 'asu-searchbox', get_template_directory_uri() . '/js/asu-searchbox.js', array( 'jquery' ), '20150522', true );
-	wp_enqueue_script( 'asu-searchbox' );
-
 	wp_register_script( 'asu-header-config', get_template_directory_uri() . '/js/asu-header-config.js', array( 'jquery' ), '20150522', true );
+	//wp_register_script( 'menu-dropdown-toggle', get_template_directory_uri() . '/js/menu-dropdown-toggle.js', array( 'jquery', 'jquery-ui-core' ), '20150708', true );
+
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'jquery-ui-core' );
+
+	wp_enqueue_script( 'asu_s-navigation' );
+	wp_enqueue_script( 'asu_s-skip-link-focus-fix' );
+	wp_enqueue_script( 'asu-searchbox' );
 	wp_enqueue_script( 'asu-header-config' );
+	//wp_enqueue_script( 'menu-dropdown-toggle' );
 
 	if ( asu_s_options( 'mobile_toggle_search' ) == 1 ) {
 		wp_register_script( 'asu_s-toggle-searchbox', get_template_directory_uri() . '/js/toggle-searchbox.js', array(), '20150506', true );
 		wp_enqueue_script( 'asu_s-toggle-searchbox' );
-
 	}
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -201,11 +203,12 @@ function asu_s_scripts_styles() {
 	);
 	$protocol = is_ssl() ? 'https' : 'http';
  
- 	// A safe way to register a CSS style file for later use
+	wp_register_style( 'asu_s-style', get_stylesheet_uri() );
+
 	wp_register_style( 'google-fonts', add_query_arg( $query_args, $protocol . "://fonts.googleapis.com/css" ) );
     wp_register_style( 'font-awesome', $protocol . '://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' ); 
 	
-	// A safe way to add/enqueue a CSS style file to a WordPress generated page
+	wp_enqueue_style( 'asu_s-style' );
 	wp_enqueue_style( 'google-fonts' );
     wp_enqueue_style('font-awesome'); 
 

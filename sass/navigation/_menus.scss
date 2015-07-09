@@ -34,8 +34,10 @@
         width: 200px;
       }
       li {
-        &:hover > ul, &.focus > ul {
-          left: 100%;
+        &:hover, &.focus {
+          &  > ul {
+            left: 100%;
+	      } 
         }
       }
       ul {
@@ -43,20 +45,26 @@
         top: 0;
       }
     }
-    li {
-      a:hover {
+  }
+  & > ul {
+    & > li {
+      & > a:hover {
         background-color: black;
         color: $color_sun;
       }
-    &:hover > ul, &.focus > ul {
-        left: auto;
+      &:hover, &.focus {
+      	& > ul {
+          left: auto;
+	    }
+      }
+      & > ul {
+        /*display: none;*/
       }
     }
   }
   li {
     float: left;
     position: relative;
-    &:hover > a, &.focus > a {}
   }
   a {
     background-color: transparent;
