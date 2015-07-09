@@ -202,11 +202,12 @@ function asu_s_scripts_styles() {
 	$protocol = is_ssl() ? 'https' : 'http';
  
  	// A safe way to register a CSS style file for later use
-	wp_register_style( 'google-fonts', add_query_arg( $query_args, $protocol . "://fonts.googleapis.com/css" ), array(), null );
+	wp_register_style( 'google-fonts', add_query_arg( $query_args, $protocol . "://fonts.googleapis.com/css" ) );
+    wp_register_style( 'font-awesome', $protocol . '://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' ); 
 	
 	// A safe way to add/enqueue a CSS style file to a WordPress generated page
 	wp_enqueue_style( 'google-fonts' );
-    wp_enqueue_style('font-awesome', $protocol . '://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'); 
+    wp_enqueue_style('font-awesome'); 
 
 	if ( asu_s_options( 'sidebar_layout', 'default' ) == "default" ) {
 		// Retrieves the stored value from the database
