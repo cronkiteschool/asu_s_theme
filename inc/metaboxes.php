@@ -24,6 +24,13 @@ function asu_s_custom_meta() {
 			$post_type,
 			'side'
 		);
+		add_meta_box(
+			'asu_s_hero_text_meta',
+			esc_html__( 'Hero Image Text', 'asu_s' ),
+			'asu_s_hero_text_callback',
+			$post_type,
+			'advanced'
+		);
    /*     add_meta_box(*/
 			//'asu_s_hero_image_meta',
 			//esc_html__( 'Featured Image', 'asu_s' ),
@@ -62,6 +69,14 @@ function asu_s_sidebar_callback( $post ) {
 	echo '</p>';
 }
 
+function asu_s_hero_text_callback( $post ) {
+	echo '<p>';
+	echo '<label for="meta-textarea" class="prfx-row-title">' . _e( 'Hero Text Input', 'asu_s' ) . '</label>';
+	echo '<textarea name="meta-textarea" id="meta-textarea">';
+	if ( isset ( $asu_s_stored_meta['meta-hero-textarea'] ) ) echo $asu_s_stored_meta['hero-meta-textarea'][0];
+	echo '</textarea>';
+	echo '</p>';
+}
 /*function asu_s_hero_callback( $post ) {*/
 	//wp_nonce_field( basename( __FILE__ ), 'asu_s_nonce' );
 	//$asu_s_stored_meta = get_post_meta( $post->ID );
@@ -121,6 +136,10 @@ function asu_s_meta_save( $post_id ) {
 		$css .= asu_s_array_to_css( $layout_scheme );
 		if( !empty( $css ) )
     		update_post_meta( $post_id, 'meta-sidebar-css', $css );
+	}
+	// Checks for input and saves if needed
+	if( isset( $_POST[ 'hero-meta-textarea' ] ) ) {
+	    update_post_meta( $post_id, 'hero-meta-textarea', $_POST[ 'hero-meta-textarea' ] );
 	}
 	// Checks for input and saves if needed
    /* if( isset( $_POST[ 'meta-hero-image' ] ) ) {*/

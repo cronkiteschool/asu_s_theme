@@ -36,7 +36,7 @@
 		$thumb_url_array = wp_get_attachment_image_src($thumb_id, 'hero-image', true);
 		$thumb_url = $thumb_url_array[0];
 		echo '<div id="hero" class="">';
-			echo '<div id="hero-text-1" class="hero-text">Hero Text 1</div>';
+			echo '<div id="hero-text-1" class="hero-text fixed-width"><h1>Hero Text 1</h1></div>';
 			echo '<div id="hero-image" class="blur"></div>';
 		echo '</div>';
 		echo '<style id="asu_s-style-inline-css" type="text/css">';

@@ -129,17 +129,32 @@
   transform: scale(1.1);
   /*z-index: -2;*/
   overflow: hidden;
-  /*position: relative;*/
+  position: relative;
 }
 #hero-image {
-  z-index: -1;
-  position: relative;
+  z-index: 1;
 }
 
 .hero-text {
-	z-index: 9999;
-  position: relative;
+  text-shadow: rgba(0, 0, 0, 0.7) 1px 1px 1px;
+  z-index: -1;
+  position: absolute;
+  /*width: 100%;*/
+  left: 0;
+  right: 0;
+  h1 {
+    font-size: 3.5em;
+    font-weight: 600;
+    color: $white;
+  }
 }
+
+@media screen and (min-width: 37.5em) {
+  .hero-text {
+    z-index: 10;
+  }
+}
+
 .bg {
   background-size: cover;
   height: 100vh;
