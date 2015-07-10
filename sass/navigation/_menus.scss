@@ -25,16 +25,11 @@
       top: 2.4em;
       left: -999em;
       z-index: 99999;
-      :hover > a, .focus > a {}
       a {
-        &:hover, &.focus {
-          background-color: black;
-          color: $white;
-        }
         width: 200px;
       }
       li {
-        &:hover, &.focus {
+        &:hover, &:focus {
           &  > ul {
             left: 100%;
 	      } 
@@ -48,16 +43,24 @@
   }
   & > ul {
     & > li {
-      & > a:hover {
-        background-color: black;
-        color: $color_sun;
-      }
-      &:hover, &.focus {
+      &:hover, &:focus {
+        & > a {
+          color: $color_sun;
+          background-color: $color_mine_shaft;
+        }
       	& > ul {
           left: auto;
 	    }
       }
       & > ul {
+        & > li { 
+          &:hover, &:focus {
+            & > a {
+              color: $white;
+              background-color: $black;
+            }
+          }
+	    }
         /*display: none;*/
       }
     }
@@ -75,11 +78,13 @@
     padding: 1em 1.5em;
     display: block;
     text-decoration: none;
+    &:hover, &:focus {
+	}
   }
   .current_page_item > a, .current-menu-item > a, .current_page_ancestor > a {}
   .sub-menu {
     background-color: $color_mine_shaft;
-    border: 1px solid black;
+    border: 1px solid $black;
     border-color: transparent;
     border-radius: 0 0 .20em .20em;
     -webkit-box-shadow: none;

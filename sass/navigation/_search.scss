@@ -45,7 +45,7 @@
       outline: none;
     }
   }
-  &.focus {
+  &:focus {
     z-index: 20;
     input {
       left: 0;
