@@ -4,7 +4,7 @@ Theme URI: https://github.com/cronkiteschool/asu_s_wordpress_theme
 Author: Cronkite School IT
 Author URI: https://jrnops.jmc.asu.edu
 Description: An ASU Standards inspired theme based on <code>_s</code>, or <em>underscores</em>.
-Version: 1.2.4
+Version: 1.2.5
 GitHub Theme URI: https://github.com/cronkiteschool/asu_s_wordpress_theme
 GitHub Branch: master
 License: GNU General Public License v2 or later
@@ -15,7 +15,7 @@ Tags: black, white, maroon, gold, grey, one-column, two-columns,full-width-templ
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-_s is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
+asu_s_wordpress_theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
@@ -404,11 +404,6 @@ hr {
   border-top: 1px solid #b7b7b7;
   margin-bottom: 1.5em;
   margin-top: 1.5em;
-}
-
-ul,
-ol {
-  margin: 0 0 1.5em 3em;
 }
 
 ul {
