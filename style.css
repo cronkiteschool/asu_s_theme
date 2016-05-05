@@ -920,7 +920,6 @@ a:visited {
 }
 
 .hentry {
-  background-color: #f5f5f5;
   margin: 0 0 1.5em;
 }
 
@@ -951,7 +950,6 @@ a:visited {
 }
 
 article.post {
-  background-color: #f1f1f1;
   border-bottom: 1px solid #b7b7b7;
   margin-bottom: 10px;
   padding: 20px;
