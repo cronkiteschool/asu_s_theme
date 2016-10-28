@@ -18,13 +18,13 @@ $blog_title = get_bloginfo();
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-<?php echo file_get_contents('https://www.asu.edu/asuthemes/4.3/heads/default.shtml'); ?><!-- ASU Header -->
+<?php echo get_asuthemes_contents('heads/default.shtml'); ?><!-- ASU Header -->
 
 <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-<?php echo file_get_contents('https://www.asu.edu/asuthemes/4.3/includes/gtm.shtml'); ?><!-- ASU Google Tag Manager -->
+<?php echo get_asuthemes_contents('includes/gtm.shtml'); ?><!-- ASU Google Tag Manager -->
 
 
 <div id="page" class="hfeed site">
@@ -32,7 +32,7 @@ $blog_title = get_bloginfo();
 
 	<header id="masthead" class="site-header" role="banner">
 		<div id="asu_header" class="fixed-width">
-			<?php echo  file_get_contents('https://www.asu.edu/asuthemes/4.3/headers/default.shtml'); ?>
+			<?php echo  get_asuthemes_contents('headers/default.shtml'); ?>
 		<!-- .asu_header -->
 		</div>
 		<div class="site-branding fixed-width">

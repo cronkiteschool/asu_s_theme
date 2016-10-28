@@ -254,3 +254,8 @@ require get_template_directory() . '/inc/metaboxes.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Load ASU additions.
+ */
+require get_template_directory() . '/inc/asu.php';
