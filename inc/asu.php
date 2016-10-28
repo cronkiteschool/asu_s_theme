@@ -11,7 +11,7 @@
  * @param string $path Path to ASU themes file.
  * @return string
  */
-function make_asuthemes_request( $path ) {
+function get_asuthemes_contents( $path ) {
 
     $url = esc_url_raw( 'https://www.asu.edu/asuthemes/4.3/' . $path );
     $response = wp_remote_get( $url );
