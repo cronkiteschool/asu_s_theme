@@ -10,8 +10,12 @@
  * Adds a meta box to the post editing screen for sidebar layout
  */
 function asu_s_custom_meta() {
-
-	$post_types = get_post_types( array( 'public' => true ) ); 
+	// Validate Vars
+	if( isset($wp_query->query['post_type']) ) {
+		$post_types = get_post_types( array( 'public' => true ) ); 
+	} else {
+		return;
+	}
 
 	foreach ( $post_types as $post_type ) {
 		if ( 'attachment' == $postType ) {
